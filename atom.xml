@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://red010182.github.com/atom.xml" rel="self"/>
   <link href="http://red010182.github.com/"/>
-  <updated>2013-02-25T20:35:40+08:00</updated>
+  <updated>2013-02-25T20:39:36+08:00</updated>
   <id>http://red010182.github.com/</id>
   <author>
     <name><![CDATA[tpy]]></name>
@@ -14,13 +14,14 @@
 
   
   <entry>
-    <title type="html"><![CDATA[中文測試啦]]></title>
+    <title type="html"><![CDATA[Octopress實在是太酷啦!]]></title>
     <link href="http://red010182.github.com/blog/2013/02/25/title/"/>
     <updated>2013-02-25T20:07:00+08:00</updated>
     <id>http://red010182.github.com/blog/2013/02/25/title</id>
-    <content type="html"><![CDATA[<p>how to write content?</p>
+    <content type="html"><![CDATA[<p>Cool!</p>
 
-<p><img src="http://placekitten.com/890/280"></p>
+<p><img src="http://placekitten.com/890/280">
+<img src="http://red010182.github.com/public/images/screenshots"></p>
 ]]></content>
   </entry>
   
