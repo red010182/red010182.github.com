@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://red010182.github.com/atom.xml" rel="self"/>
   <link href="http://red010182.github.com/"/>
-  <updated>2013-02-25T20:56:35+08:00</updated>
+  <updated>2013-02-25T21:03:12+08:00</updated>
   <id>http://red010182.github.com/</id>
   <author>
     <name><![CDATA[tpy]]></name>
@@ -18,10 +18,14 @@
     <link href="http://red010182.github.com/blog/2013/02/25/title/"/>
     <updated>2013-02-25T20:07:00+08:00</updated>
     <id>http://red010182.github.com/blog/2013/02/25/title</id>
-    <content type="html"><![CDATA[<p>Cool!</p>
-
-<p><img src="http://placekitten.com/890/280">
+    <content type="html"><![CDATA[<p>Cool!
+這篇post竟然是這樣編出來的：
 <img src="http://red010182.github.com/images/screenshots/shot.png"></p>
+
+<p>然後再一句</p>
+
+<pre><code>rake deploy
+</code></pre>
 ]]></content>
   </entry>
   
