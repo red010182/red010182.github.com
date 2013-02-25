@@ -1,0 +1,7 @@
+---
+layout: post
+title: "中文測試啦"
+date: 2013-02-25 20:07
+comments: true
+categories: 
+---
