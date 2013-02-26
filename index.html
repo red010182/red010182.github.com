@@ -7,8 +7,8 @@
 	<meta name="author" content="tpy">
 
 	
-	<meta name="description" content=" Cool!
-這篇post竟然是這樣編出來的： 然後再一句 rake deploy 我的天啊，太神奇了傑克!! 我的天啊，太神奇了傑克!! 我的天啊，太神奇了傑克!! 我的天啊，太神奇了傑克!! ">
+	<meta name="description" content="什麼是octopress 先裝ruby才能裝octopress 安裝octopress在本機電腦 git clone git://github.com/imathis/octopress.git octopress
+cd octopress # If you use RVM, You'll be &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
@@ -29,6 +29,142 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2013/02/26/set-up-octorpress-using-github/">Set Up Octopress Using Github</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2013-02-26T23:42:00+08:00">
+			<span class="day">26</span><span class="month">Feb</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <h1>什麼是octopress</h1>
+
+<h1>先裝ruby才能裝octopress</h1>
+
+<h1>安裝octopress在本機電腦</h1>
+
+<pre><code>git clone git://github.com/imathis/octopress.git octopress
+cd octopress    # If you use RVM, You'll be asked if you trust the .rvmrc file (say yes).
+</code></pre>
+
+<p>The next time you cd into the octopress directory you’ll have to approve the new .rvmrc file. Next let’s use Bundler to install our dependencies.</p>
+
+<pre><code>gem install bundler
+bundle install
+</code></pre>
+
+<p>Finally we’ll tell Octopress to setup its default theme.</p>
+
+<pre><code>rake install
+</code></pre>
+
+<h1>部署octopress的方法</h1>
+
+<h1>部署octopress至Github (免費)</h1>
+
+<pre><code>rake setup_github_pages
+</code></pre>
+
+<p>http://octopress.org/docs/deploying/github/</p>
+
+<h2>generate ssh keys</h2>
+
+<p>https://help.github.com/articles/generating-ssh-keys
+in ~/.ssh/config:</p>
+
+<pre><code>Host blog-1
+HostName github.com
+User git
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/{private_key_of_blog1}
+
+Host site2
+HostName github.com
+User git
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/{private_key_of_site2}
+</code></pre>
+
+<h1>Custom Domain</h1>
+
+<p>http://robdodson.me/blog/2012/04/30/custom-domain-with-octopress-and-github-pages/
+http://gibuloto.com/blog/install-octopress-with-ruby-1-dot-9-3/</p>
+
+<p>在octopress/source/CNAME裡(沒這個檔案的話就創建一個)寫入你的custom domain: my_custom_domain.com。
+然後到你的DNS管理區設定一個CNAME至github.com
+以我自己為例，in /source/CNAME</p>
+
+<pre><code>blog.tpy.tw
+</code></pre>
+
+<p>我的DNS供應商(pchome)設定CNAME:blog, value: github.com。</p>
+
+<h1>進階: 本機電腦部署至多個Github帳號</h1>
+
+<p>你一定有機會在你自己的電腦同時使用「私人」以及「工作」用的github repo
+然而當你push至github時，github只會用你所提交的ssh key辨識你的身份，而不是用git config user.name或是其他，所以要有一個切換ssh key的機制。</p>
+
+<p>ssh-agent是你的鑰匙管家，而ssh-add這個指令可以新增/刪除目前管家手上所掌控的鑰匙</p>
+
+<p>git remote add origin git@blog-1:you_github_account/you_github_account.github.com</p>
+
+<pre><code>ssh-add -l # checkout which key you use to link to github, github identify you by this key
+</code></pre>
+
+<p>if you use user_A&#8217;s key to authenticate user_B&#8217;s github repo, it will fail of course</p>
+
+<pre><code>ssh-add ~/.ssh/{private_key_of_blog1} # add key for blog1's repo
+ssh-add -d ~/.ssh/{remove_other_key}
+</code></pre>
+
+<p>ref:</p>
+
+<p>https://github.com/chalien/Multiple-public-ssh-key-github
+http://net.tutsplus.com/tutorials/tools-and-tips/how-to-work-with-github-and-multiple-accounts/
+http://stackoverflow.com/questions/3225862/multiple-github-accounts-ssh-config
+http://stackoverflow.com/questions/2419566/best-way-to-use-multiple-ssh-private-keys-on-one-client
+http://stackoverflow.com/questions/4665337/git-pushing-as-wrong-user</p>
+
+<h2>ssh-add</h2>
+
+<p>http://linux.die.net/man/1/ssh-add</p>
+
+<h1>附錄: Git複習</h1>
+
+<p>http://blog.longwin.com.tw/2009/05/git-initial-env-setup-2009/
+git remote -v
+git remote add SOME_NAME git@you_ssh_host_not_ssh_host_name:your_github_username/your_github_username.github.com #your_github_username.github.com is actually your repo</p>
+
+<h1>附錄: markdown language</h1>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
