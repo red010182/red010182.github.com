@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://red010182.github.com/atom.xml" rel="self"/>
   <link href="http://red010182.github.com/"/>
-  <updated>2013-02-27T14:37:57+08:00</updated>
+  <updated>2013-02-27T14:40:20+08:00</updated>
   <id>http://red010182.github.com/</id>
   <author>
     <name><![CDATA[tpy]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Set up octopress using github]]></title>
-    <link href="http://red010182.github.com/blog/2013/02/26/set-up-octorpress-using-github/"/>
+    <link href="http://red010182.github.com/blog/2013/02/26/how-to-use-octorpress-on-github/"/>
     <updated>2013-02-26T23:42:00+08:00</updated>
-    <id>http://red010182.github.com/blog/2013/02/26/set-up-octorpress-using-github</id>
+    <id>http://red010182.github.com/blog/2013/02/26/how-to-use-octorpress-on-github</id>
     <content type="html"><![CDATA[<h1>什麼是octopress</h1>
 
 <p>octopress是一套讓你寫blog的程式。聽起來好像沒啥特別的，不過他其實很不一樣。一般的部落格系統(或是更專門的術語content manage system, CMS)，像是wordpress, google的blogger, 無名小站, 痞客幫&#8230;等，清一色都是架構在動態網站上，也就是網站需要run在類似php這種動態語言的環境，而且通常會搭配著apache, mysql, linux，這個環境簡稱LAMP(Linux + Apache + Mysql + PHP)。</p>
