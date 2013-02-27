@@ -7,8 +7,7 @@
 	<meta name="author" content="tpy">
 
 	
-	<meta name="description" content="什麼是octopress 先裝ruby才能裝octopress 安裝octopress在本機電腦 git clone git://github.com/imathis/octopress.git octopress
-cd octopress # If you use RVM, You'll be &hellip;">
+	<meta name="description" content="什麼是octopress octopress是一套讓你寫blog的程式。聽起來好像沒啥特別的，不過他其實很不一樣。一般的部落格系統(或是更專門的術語content manage system, CMS)，像是wordpress, google的blogger, 無名小站, 痞客幫&#8230;等 &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
@@ -55,56 +54,125 @@ cd octopress # If you use RVM, You'll be &hellip;">
   
     <h1>什麼是octopress</h1>
 
+<p>octopress是一套讓你寫blog的程式。聽起來好像沒啥特別的，不過他其實很不一樣。一般的部落格系統(或是更專門的術語content manage system, CMS)，像是wordpress, google的blogger, 無名小站, 痞客幫&#8230;等，清一色都是架構在動態網站上，也就是網站需要run在類似php這種動態語言的環境，而且通常會搭配著apache, mysql, linux，這個環境簡稱LAMP(Linux + Apache + Mysql + PHP)。</p>
+
+<p>那這樣有什麼壞處呢? 首先，第一個你必須找一個LAMP環境的主機去放你的網站，不管是實體主機還是虛擬主機，這多半都需要錢，就算免費也會有廣告，看著別人的廣告放在自己的blog上一閃一閃的，整個就是噁心。第二個，最令人討厭的是你必須忍受在瀏覽器上用網頁編寫文章!! 也就是所謂的網站後台附贈的文字編輯器，這通常都很難用，難用在於:</p>
+
+<p>所謂的What You See is What You Get(WYSWYG)功能，很爛，真的。排版常會亂掉，每一家blog system都一樣。所以你免不了要跟html tag打交道，而這又是很繁瑣的事情，因為你很難在網頁編輯器處理好html的縮排，而且這些tag也很煩。</p>
+
+<p><big><strong><em>我是在寫文章不是在寫網頁!!!</em></strong></big></p>
+
+<p>這件事情，果然大家都有感受到&#8230;</p>
+
+<blockquote><p>貼圖麻煩、排版麻煩、host麻煩、樣樣麻煩&#8230;<a href="http://blog.xdite.net/posts/2011/10/07/what-is-octopress/">XDite</a></p></blockquote>
+
+<p>如果你想用自己熟悉的text editor，想用<a href="http://en.wikipedia.org/wiki/Markdown">markdown</a>來排版，想產生靜態文檔放在一個免費空間，甚至想用git版本控制文章的話
+那麼Octopress is right for you.</p>
+
+<p>ps. octopress不適合程式<a href="http://zh.wikipedia.org/wiki/%E9%BA%BB%E7%93%9C">麻瓜</a>，它是為<del>宅宅</del>工程師所設計的。</p>
+
 <h1>先裝ruby才能裝octopress</h1>
+
+<p>原因很簡單，octopress是ruby寫的，想執行它你必須有ruby環境。不過呢，一直以來在OSX裝ruby不是一件太容易的事，你要搞rvm, 環境變數, 還要避免跟OSX內建的ruby版本衝突，還有一些dependency&#8230;etc. 運氣好的話一個小時可以搞定，運氣不好的話可能要花一個上午。</p>
+
+<p>然而最近我發現有個<a href="http://railsinstaller.org/">好物</a>，不消一杯咖啡的時間，躺著都可以搞定，裝過一次就回不去了!! 這個安裝包同時也會幫你安裝git，這麼nice還不用嗎？</p>
+
+<p>裝完之後檢查一下</p>
+
+<pre><code>ruby -v
+rails -v 
+rvm -v
+</code></pre>
+
+<p>查看這三個主要套件的版本是否為最新，另外幾個常用的指令</p>
+
+<pre><code>rvm list        # 列出目前「透過rvm」安裝的各種ruby版本
+rvm use 1.9.3   # 切換至ruby 1.9.3版
+</code></pre>
+
+<p>請務必把ruby版本切換至1.9.2或更新，以下的範例都是用1.9.3。</p>
 
 <h1>安裝octopress在本機電腦</h1>
 
+<p>既然安裝包已經安裝好git了，那就直接複製github上的repo吧!</p>
+
 <pre><code>git clone git://github.com/imathis/octopress.git octopress
-cd octopress    # If you use RVM, You'll be asked if you trust the .rvmrc file (say yes).
+cd octopress    # 如果你用rvm，這時候你有可能會被問到是否相信這個.rvmrc檔案來管理你的ruby環境，選擇yes
 </code></pre>
 
-<p>The next time you cd into the octopress directory you’ll have to approve the new .rvmrc file. Next let’s use Bundler to install our dependencies.</p>
+<p>切到octopress資料夾後，利用bundler來安裝所有ruby相關的dependency。不過呢，你必須先安裝bundler</p>
 
 <pre><code>gem install bundler
-bundle install
 </code></pre>
 
-<p>Finally we’ll tell Octopress to setup its default theme.</p>
+<p>接著利用bundler安裝Gemfile裡面的gem，bundler會幫你處理dependency</p>
+
+<pre><code>bundle install
+</code></pre>
+
+<p>然後安裝octopress預設的佈景主題吧!</p>
 
 <pre><code>rake install
 </code></pre>
 
+<p>到目前為止，已經有一個完整的「產生blog的系統」安裝在你的機器上了。這就來看一下他「產生」的blog長什麼樣子</p>
+
+<pre><code>rake preview    # octopress啓動一個網頁伺服器，預設port為4000
+</code></pre>
+
+<p>然後打開你的browser，網址輸入<a href="http://localhost:4000">localhost:4000</a>。鏘鏘!! 你已經完成一個屬於自己的blog了! 下一步就是把這個blog放到一個網路空間去。</p>
+
 <h1>部署octopress的方法</h1>
 
+<pre><code>rake generate   # 產生編譯過的靜態檔案至_deploy資料夾內
+</code></pre>
+
+<p>部署octopress其實只要找個免費空間，把_deploy內的檔案全部上傳即可，可以是dropbox或是其他數不盡的免費網頁空間。但是最夯的還是<a href="http://octopress.org/docs/deploying/">這些</a>:</p>
+
+<ul>
+<li>Github</li>
+<li>Heroku</li>
+<li>Rsync</li>
+</ul>
+
+
+<p>至於要選擇哪一個，詳細我也沒研究，我個人是偏好github</p>
+
 <h1>部署octopress至Github (免費)</h1>
+
+<p>到Github申請一個帳號，開一個repo，請原諒懶惰的小弟，這部分就不在此贅述了。唯一要注意的就是，<strong>repo的名稱必須是your_github_user_name.github.com</strong>。</p>
+
+<p>設定octopress將來自動幫你部署，然後在terminal輸入</p>
 
 <pre><code>rake setup_github_pages
 </code></pre>
 
-<p>http://octopress.org/docs/deploying/github/</p>
+<p><a href="http://octopress.org/docs/deploying/github/">官網教學</a></p>
 
 <h2>generate ssh keys</h2>
 
-<p>https://help.github.com/articles/generating-ssh-keys
-in ~/.ssh/config:</p>
+<p>這部分是比較麻煩的地方，當代的許多網路服務都會透過ssh安全加密連線來傳送資料，heroku或github都是，亞馬遜AWS也是，可以說ssh連線已經成為潮流了。他的運作原理真要講起來也是很複雜，簡單一句話就是ssh是透過鑰匙來認證身份的，public key跟private key。public key就像是真實世界的鎖頭，而private key像是真實世界的鑰匙，每一個public key都有其對應的private key，ssh運作的原理就是當你連線的時候，這個連線會帶上一個private key去match對方的public key，換句話說就是帶上一把鑰匙去開對方的鎖頭，開成了就成了。而public key跟private key其實就只是一個檔案而已，只不過這檔案裡的內容是透過一種叫做rda演算法所算出來的加密字串。因為它只是檔案所以可以被複製貼上，所以你可以擁有很多鑰匙跟鎖頭，除此之外你也可以有「多個」鑰匙-鎖頭組(key pair)，同一組key pair內的public key跟private key是互相對應的，然而不同的key pair之間的key都不互相對應，就像是你沒辦法把腳踏車鑰匙當成機車鑰匙一樣，腳踏車鑰匙只能打開腳踏車上的鎖頭，而機車鑰匙只能發動機車(這也是一種鎖頭)。</p>
 
-<pre><code>Host blog-1
+<p>言歸正傳，如果你想要透過ssh用git push到github，就必須要有private key跟public key，並且要把public key跟你的github帳號掛鉤起來，意思就是拿鎖頭去鎖你的github帳號，只能用你手上的private key去開。至於如何產生ssh，github<a href="https://help.github.com/articles/generating-ssh-keys">官網有教學</a>，建議你讀一讀那篇文章。在這邊提供我自己的設定</p>
+
+<p>in ~/.ssh/config:</p>
+
+<pre><code>Host tpy-blog
 HostName github.com
 User git
 PreferredAuthentications publickey
-IdentityFile ~/.ssh/{private_key_of_blog1}
-
-Host site2
-HostName github.com
-User git
-PreferredAuthentications publickey
-IdentityFile ~/.ssh/{private_key_of_site2}
+IdentityFile ~/.ssh/{my_private_key}
 </code></pre>
 
-<h1>Custom Domain</h1>
+<p>再確認一次你的鑰匙</p>
 
-<p>http://robdodson.me/blog/2012/04/30/custom-domain-with-octopress-and-github-pages/
-http://gibuloto.com/blog/install-octopress-with-ruby-1-dot-9-3/</p>
+<pre><code>ssh-add -l    
+</code></pre>
+
+<h1>進階: Custom Domain</h1>
+
+<p><a href="http://robdodson.me/blog/2012/04/30/custom-domain-with-octopress-and-github-pages/"></a>
+<a href="http://gibuloto.com/blog/install-octopress-with-ruby-1-dot-9-3/"></a></p>
 
 <p>在octopress/source/CNAME裡(沒這個檔案的話就創建一個)寫入你的custom domain: my_custom_domain.com。
 然後到你的DNS管理區設定一個CNAME至github.com
@@ -147,11 +215,11 @@ http://stackoverflow.com/questions/4665337/git-pushing-as-wrong-user</p>
 
 <h1>附錄: Git複習</h1>
 
-<p>http://blog.longwin.com.tw/2009/05/git-initial-env-setup-2009/
-git remote -v
-git remote add SOME_NAME git@you_ssh_host_not_ssh_host_name:your_github_username/your_github_username.github.com #your_github_username.github.com is actually your repo</p>
+<p>http://blog.longwin.com.tw/2009/05/git-initial-env-setup-2009/</p>
 
-<h1>附錄: markdown language</h1>
+<pre><code>git remote -v
+git remote add SOME_NAME git@you_ssh_host_not_ssh_host_name:your_github_username/your_github_username.github.com #your_github_username.github.com is actually your repo
+</code></pre>
 
   
   
