@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://red010182.github.com/atom.xml" rel="self"/>
   <link href="http://red010182.github.com/"/>
-  <updated>2013-02-27T14:45:18+08:00</updated>
+  <updated>2013-02-27T14:46:54+08:00</updated>
   <id>http://red010182.github.com/</id>
   <author>
     <name><![CDATA[tpy]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Set up octopress using github]]></title>
+    <title type="html"><![CDATA[如何用Octopress架部落格在Github上(免費)]]></title>
     <link href="http://red010182.github.com/blog/2013/02/26/how-to-use-octorpress-on-github/"/>
     <updated>2013-02-26T23:42:00+08:00</updated>
     <id>http://red010182.github.com/blog/2013/02/26/how-to-use-octorpress-on-github</id>
