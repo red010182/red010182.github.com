@@ -4,7 +4,7 @@
   <title><![CDATA[Category: host | My Octopress Blog]]></title>
   <link href="http://red010182.github.com/blog/categories/host/atom.xml" rel="self"/>
   <link href="http://red010182.github.com/"/>
-  <updated>2013-03-05T09:41:24+08:00</updated>
+  <updated>2013-03-05T09:43:27+08:00</updated>
   <id>http://red010182.github.com/</id>
   <author>
     <name><![CDATA[tpy]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Setup a LAMP with phpmyadmin on AWS-EC2]]></title>
+    <title type="html"><![CDATA[How to Setup a LAMP Server with phpmyadmin on AWS-EC2]]></title>
     <link href="http://red010182.github.com/blog/2013/03/05/setup-a-lamp-with-phpmyadmin-on-aws-ec2/"/>
     <updated>2013-03-05T09:17:00+08:00</updated>
     <id>http://red010182.github.com/blog/2013/03/05/setup-a-lamp-with-phpmyadmin-on-aws-ec2</id>
