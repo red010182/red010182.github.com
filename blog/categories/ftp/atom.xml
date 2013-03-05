@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ftp | My Octopress Blog]]></title>
+  <link href="http://red010182.github.com/blog/categories/ftp/atom.xml" rel="self"/>
+  <link href="http://red010182.github.com/"/>
+  <updated>2013-03-05T09:37:37+08:00</updated>
+  <id>http://red010182.github.com/</id>
+  <author>
+    <name><![CDATA[tpy]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[Linux] FTP server on Ubuntu]]></title>
+    <link href="http://red010182.github.com/blog/2013/03/04/linux-ftp-server-on-ubuntu/"/>
+    <updated>2013-03-04T19:59:00+08:00</updated>
+    <id>http://red010182.github.com/blog/2013/03/04/linux-ftp-server-on-ubuntu</id>
+    <content type="html"><![CDATA[<p>這麼一個基本的功能，每次都要弄一大堆設定，真的是無敵煩，為了一勞永逸，我決定要把它記錄下來!!</p>
+
+<h2>前置步驟</h2>
+
+
+<p>這個是ubuntu最有名的ftp server軟體，我也沒比較過其他的，就用吧</p>
+
+<pre><code>sudo apt-get install vsftpd
+</code></pre>
+
+<p>安裝完之後，可以用這個指令查看網路狀態(超實用)</p>
+
+<pre><code>netstat -tul
+</code></pre>
+
+<p>或者只看ftp的狀態</p>
+
+<pre><code>netstat -tul | grep ftp
+</code></pre>
+
+<p>由於這個指令實在太好用了，直接加入自定指令:
+in <code>~/.bashrc</code> add:</p>
+
+<pre><code>alias net='netstat -tul'
+</code></pre>
+
+<p>然後存檔並重新讀取shell(重新登入，或者直接輸入下列指令)</p>
+
+<pre><code>exec bash
+</code></pre>
+
+<p>然後就可以用開心地用net這個指令查網路狀態囉</p>
+
+<p>登入ftp當然需要帳號密碼，因為這樣比較安全，或許可以去創一個新的帳號專門跟ftp掛勾，或者用既有ubuntu的帳號也可以，如果你忘記自己帳號的密碼的話，就這麼做:</p>
+
+<pre><code>su              // 切換成root，或者sudo su(for bitnami users)
+passwd user     // theAccountThatYouForgotThePassword
+</code></pre>
+
+<p>然後就可以輸入新密碼了</p>
+
+<h2>vsftpd正式開始</h2>
+
+
+<p>在<code>/etc/vsftpd.conf</code>最後面新增幾行code:</p>
+
+<pre><code>listen=YES
+listen_address=0.0.0.0
+write_enable=YES
+local_enable=YES
+anonymous_enable=NO
+local_umask=022
+</code></pre>
+
+<p>然後重啟ftp server:</p>
+
+<pre><code>sudo /etc/init.d/vsftpd restart
+</code></pre>
+
+<p>打完收工!</p>
+
+<p>ps. 所有vsftpd相關的設定檔、user list檔、ch_root什麼鬼的，通通都在/etc裡</p>
+
+<p>最後提醒一下，在client端用ftp軟體連線的時候，如果遇到問題試試看改成主動模式
+That’s it!</p>
+
+<p>不錯的參考資訊：</p>
+
+<ul>
+<li><a href="http://blog.udn.com/nigerchen/2261345">ubuntu FTP SERVER 安裝設置( vsftp 版本 )</a></li>
+<li><a href="http://www.wretch.cc/blog/taiyichuan/21131053">伺服器以無法路由的 IP Address 送出了被動式回應. 改為使用伺服器 IP Address 問題</a></li>
+<li><a href="http://matisse.wordpress.com/2007/10/30/%E8%BD%89%E9%8C%84-ftp-%E4%B8%BB%E5%8B%95%E6%A8%A1%E5%BC%8F%E8%88%87%E8%A2%AB%E5%8B%95%E6%A8%A1%E5%BC%8F/">FTP 主動模式與被動模式</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

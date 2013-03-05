@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: mysql | My Octopress Blog]]></title>
+  <link href="http://red010182.github.com/blog/categories/mysql/atom.xml" rel="self"/>
+  <link href="http://red010182.github.com/"/>
+  <updated>2013-03-05T09:37:37+08:00</updated>
+  <id>http://red010182.github.com/</id>
+  <author>
+    <name><![CDATA[tpy]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Setup a LAMP with phpmyadmin on AWS-EC2]]></title>
+    <link href="http://red010182.github.com/blog/2013/03/05/setup-a-lamp-with-phpmyadmin-on-aws-ec2/"/>
+    <updated>2013-03-05T09:17:00+08:00</updated>
+    <id>http://red010182.github.com/blog/2013/03/05/setup-a-lamp-with-phpmyadmin-on-aws-ec2</id>
+    <content type="html"><![CDATA[<p>First of all, launch an EC2 with this AMI (for cost effective, this blog uses spot micro instance for example)</p>
+
+<h3>Launch Instance</h3>
+
+
+<p>"ubuntu/images/ebs/ubuntu-precise-12.04-amd64-server-20120616 (ami-5965401c)"</p>
+
+<p>you can easily find this AMI by searching the AMI ID: ami-5965401c</p>
+
+<p>Connect to remote server</p>
+
+<p>In your mac, open the terminal</p>
+
+<pre><code>ssh -i [security_key.pem] ubuntu@[ec2_public_DNS]
+</code></pre>
+
+<h3>Trouble shooting</h3>
+
+
+<p>if you get into trouble with some error message like “RSA host key  has changed …" when you try to connect to remote server,</p>
+
+<p>follow this to delete some text in .ssh/known_hosts file on your local machine:</p>
+
+<p>For example in my mac</p>
+
+<p>open .ssh/known_hosts file by (where sb is my self-defined command for sblime text 2, you might just open it with your favorite editor)</p>
+
+<pre><code>sb ~/.ssh/known_hosts
+</code></pre>
+
+<p>delete the whole entry of problem ip</p>
+
+<h3>Install LAMP</h3>
+
+
+<p>Follow this to install LAMP-server by typing</p>
+
+<pre><code>sudo apt-get update
+sudo tasksel install lamp-server
+</code></pre>
+
+<h3>Install phpmyadmin</h3>
+
+
+<pre><code>sudo apt-get install phpmyadmin
+</code></pre>
+
+<p>in</p>
+
+<pre><code>/etc/apache2/apache2.conf
+</code></pre>
+
+<p>add</p>
+
+<pre><code>Include /etc/phpmyadmin/apache.conf
+</code></pre>
+
+<p>Then restart server</p>
+
+<pre><code>sudo /etc/init.d/apache2 restart
+</code></pre>
+
+<p>—————————-</p>
+
+<h3>Install WordPress</h3>
+
+
+<p>it should be pretty easy when you done this far
+root to blog directory and download latest wordpress file, unzip it then open your browser on http://your_domain/blog</p>
+
+<pre><code>cd /var/www/blog
+wget http://wordpress.org/latest.tar.gz
+tar -xzvf latest.tar.gz
+</code></pre>
+
+<p>Config wordpress install themes/plugins without ftp: add this to wp-config.php</p>
+
+<pre><code>define('FS_METHOD', 'direct');
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

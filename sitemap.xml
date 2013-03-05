@@ -2,19 +2,29 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://red010182.github.com/blog/2013/02/25/title/</loc>
-        <lastmod>2013-02-25T21:15:58+08:00</lastmod>
+        <lastmod>2013-03-04T20:19:29+08:00</lastmod>
     </url>
     <url>
         <loc>http://red010182.github.com/blog/2013/02/26/how-to-use-octorpress-on-github/</loc>
-        <lastmod>2013-02-27T14:46:47+08:00</lastmod>
+        <lastmod>2013-03-04T20:19:18+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://red010182.github.com/blog/2013/03/04/linux-ftp-server-on-ubuntu/</loc>
+        <lastmod>2013-03-04T20:18:19+08:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://red010182.github.com/blog/2013/03/05/setup-a-lamp-with-phpmyadmin-on-aws-ec2/
+        </loc>
+        <lastmod>2013-03-05T09:37:37+08:00</lastmod>
     </url>
     <url>
         <loc>http://red010182.github.com/blog/archives/</loc>
-        <lastmod>2013-02-27T14:46:47+08:00</lastmod>
+        <lastmod>2013-03-05T09:37:37+08:00</lastmod>
     </url>
     <url>
         <loc>http://red010182.github.com/</loc>
-        <lastmod>2013-02-27T14:46:47+08:00</lastmod>
+        <lastmod>2013-03-05T09:37:37+08:00</lastmod>
     </url>
     <url>
         <loc>http://red010182.github.com/robots.txt</loc>

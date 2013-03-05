@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
-  <link href="http://red010182.github.com/atom.xml" rel="self"/>
+  <title><![CDATA[Category: setup | My Octopress Blog]]></title>
+  <link href="http://red010182.github.com/blog/categories/setup/atom.xml" rel="self"/>
   <link href="http://red010182.github.com/"/>
   <updated>2013-03-05T09:37:37+08:00</updated>
   <id>http://red010182.github.com/</id>
@@ -12,93 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Setup a LAMP with phpmyadmin on AWS-EC2]]></title>
-    <link href="http://red010182.github.com/blog/2013/03/05/setup-a-lamp-with-phpmyadmin-on-aws-ec2/"/>
-    <updated>2013-03-05T09:17:00+08:00</updated>
-    <id>http://red010182.github.com/blog/2013/03/05/setup-a-lamp-with-phpmyadmin-on-aws-ec2</id>
-    <content type="html"><![CDATA[<p>First of all, launch an EC2 with this AMI (for cost effective, this blog uses spot micro instance for example)</p>
-
-<h3>Launch Instance</h3>
-
-
-<p>&#8220;ubuntu/images/ebs/ubuntu-precise-12.04-amd64-server-20120616 (ami-5965401c)&#8221;</p>
-
-<p>you can easily find this AMI by searching the AMI ID: ami-5965401c</p>
-
-<p>Connect to remote server</p>
-
-<p>In your mac, open the terminal</p>
-
-<pre><code>ssh -i [security_key.pem] ubuntu@[ec2_public_DNS]
-</code></pre>
-
-<h3>Trouble shooting</h3>
-
-
-<p>if you get into trouble with some error message like “RSA host key  has changed …&#8221; when you try to connect to remote server,</p>
-
-<p>follow this to delete some text in .ssh/known_hosts file on your local machine:</p>
-
-<p>For example in my mac</p>
-
-<p>open .ssh/known_hosts file by (where sb is my self-defined command for sblime text 2, you might just open it with your favorite editor)</p>
-
-<pre><code>sb ~/.ssh/known_hosts
-</code></pre>
-
-<p>delete the whole entry of problem ip</p>
-
-<h3>Install LAMP</h3>
-
-
-<p>Follow this to install LAMP-server by typing</p>
-
-<pre><code>sudo apt-get update
-sudo tasksel install lamp-server
-</code></pre>
-
-<h3>Install phpmyadmin</h3>
-
-
-<pre><code>sudo apt-get install phpmyadmin
-</code></pre>
-
-<p>in</p>
-
-<pre><code>/etc/apache2/apache2.conf
-</code></pre>
-
-<p>add</p>
-
-<pre><code>Include /etc/phpmyadmin/apache.conf
-</code></pre>
-
-<p>Then restart server</p>
-
-<pre><code>sudo /etc/init.d/apache2 restart
-</code></pre>
-
-<p>—————————-</p>
-
-<h3>Install WordPress</h3>
-
-
-<p>it should be pretty easy when you done this far
-root to blog directory and download latest wordpress file, unzip it then open your browser on http://your_domain/blog</p>
-
-<pre><code>cd /var/www/blog
-wget http://wordpress.org/latest.tar.gz
-tar -xzvf latest.tar.gz
-</code></pre>
-
-<p>Config wordpress install themes/plugins without ftp: add this to wp-config.php</p>
-
-<pre><code>define('FS_METHOD', 'direct');
-</code></pre>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Linux] FTP server on Ubuntu]]></title>
@@ -189,7 +102,7 @@ That’s it!</p>
     <id>http://red010182.github.com/blog/2013/02/26/how-to-use-octorpress-on-github</id>
     <content type="html"><![CDATA[<h1>什麼是octopress</h1>
 
-<p>octopress是一套讓你寫blog的程式。聽起來好像沒啥特別的，不過他其實很不一樣。一般的部落格系統(或是更專門的術語content manage system, CMS)，像是wordpress, google的blogger, 無名小站, 痞客幫&#8230;等，清一色都是架構在動態網站上，也就是網站需要run在類似php這種動態語言的環境，而且通常會搭配著apache, mysql, linux，這個環境簡稱LAMP(Linux + Apache + Mysql + PHP)。</p>
+<p>octopress是一套讓你寫blog的程式。聽起來好像沒啥特別的，不過他其實很不一樣。一般的部落格系統(或是更專門的術語content manage system, CMS)，像是wordpress, google的blogger, 無名小站, 痞客幫...等，清一色都是架構在動態網站上，也就是網站需要run在類似php這種動態語言的環境，而且通常會搭配著apache, mysql, linux，這個環境簡稱LAMP(Linux + Apache + Mysql + PHP)。</p>
 
 <p>那這樣有什麼壞處呢? 首先，第一個你必須找一個LAMP環境的主機去放你的網站，不管是實體主機還是虛擬主機，這多半都需要錢，就算免費也會有廣告，看著別人的廣告放在自己的blog上一閃一閃的，整個就是噁心。第二個，最令人討厭的是你必須忍受在瀏覽器上用網頁編寫文章!! 也就是所謂的網站後台附贈的文字編輯器，這通常都很難用，難用在於:</p>
 
@@ -197,9 +110,9 @@ That’s it!</p>
 
 <p><big><strong><em>我是在寫文章不是在寫網頁!!!</em></strong></big></p>
 
-<p>這件事情，果然大家都有感受到&#8230;</p>
+<p>這件事情，果然大家都有感受到...</p>
 
-<blockquote><p>貼圖麻煩、排版麻煩、host麻煩、樣樣麻煩&#8230;<a href="http://blog.xdite.net/posts/2011/10/07/what-is-octopress/">XDite</a></p></blockquote>
+<blockquote><p>貼圖麻煩、排版麻煩、host麻煩、樣樣麻煩...<a href="http://blog.xdite.net/posts/2011/10/07/what-is-octopress/">XDite</a></p></blockquote>
 
 <p>如果你想用自己熟悉的text editor，想用<a href="http://en.wikipedia.org/wiki/Markdown">markdown</a>來排版，想產生靜態文檔放在一個免費空間，甚至想用git版本控制文章的話
 那麼Octopress is right for you.</p>
@@ -208,7 +121,7 @@ That’s it!</p>
 
 <h1>先裝ruby才能裝octopress</h1>
 
-<p>原因很簡單，octopress是ruby寫的，想執行它你必須有ruby環境。不過呢，一直以來在OSX裝ruby不是一件太容易的事，你要搞rvm, 環境變數, 還要避免跟OSX內建的ruby版本衝突，還有一些dependency&#8230;etc. 運氣好的話一個小時可以搞定，運氣不好的話可能要花一個上午。</p>
+<p>原因很簡單，octopress是ruby寫的，想執行它你必須有ruby環境。不過呢，一直以來在OSX裝ruby不是一件太容易的事，你要搞rvm, 環境變數, 還要避免跟OSX內建的ruby版本衝突，還有一些dependency...etc. 運氣好的話一個小時可以搞定，運氣不好的話可能要花一個上午。</p>
 
 <p>然而最近我發現有個<a href="http://railsinstaller.org/">好物</a>，不消一杯咖啡的時間，躺著都可以搞定，裝過一次就回不去了!! 這個安裝包同時也會幫你安裝git，這麼nice還不用嗎？</p>
 
@@ -330,7 +243,7 @@ IdentityFile ~/.ssh/{my_private_key}
 <pre><code>ssh-add -l # checkout which key you use to link to github, github identify you by this key
 </code></pre>
 
-<p>if you use user_A&#8217;s key to authenticate user_B&#8217;s github repo, it will fail of course</p>
+<p>if you use user_A's key to authenticate user_B's github repo, it will fail of course</p>
 
 <pre><code>ssh-add ~/.ssh/{private_key_of_blog1} # add key for blog1's repo
 ssh-add -d ~/.ssh/{remove_other_key}
@@ -356,31 +269,6 @@ http://doblock.com/articles/using-public-keys-with-multiple-github-accounts</p>
 <pre><code>git remote -v
 git remote add SOME_NAME git@you_ssh_host_not_ssh_host_name:your_github_username/your_github_username.github.com #your_github_username.github.com is actually your repo
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Octopress實在是太酷啦!]]></title>
-    <link href="http://red010182.github.com/blog/2013/02/25/title/"/>
-    <updated>2013-02-25T20:07:00+08:00</updated>
-    <id>http://red010182.github.com/blog/2013/02/25/title</id>
-    <content type="html"><![CDATA[<p>Cool!
-這篇post竟然是這樣編出來的：</p>
-
-<p><img src="http://red010182.github.com/images/screenshots/shot.png" width="600"></p>
-
-<p>然後再一句</p>
-
-<pre><code>rake deploy
-</code></pre>
-
-<h1>我的天啊，太神奇了傑克!!</h1>
-
-<h2>我的天啊，太神奇了傑克!!</h2>
-
-<h3>我的天啊，太神奇了傑克!!</h3>
-
-<h4>我的天啊，太神奇了傑克!!</h4>
 ]]></content>
   </entry>
   
