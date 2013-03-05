@@ -4,7 +4,7 @@
   <title><![CDATA[Category: apache | My Octopress Blog]]></title>
   <link href="http://red010182.github.com/blog/categories/apache/atom.xml" rel="self"/>
   <link href="http://red010182.github.com/"/>
-  <updated>2013-03-05T09:37:37+08:00</updated>
+  <updated>2013-03-05T09:41:24+08:00</updated>
   <id>http://red010182.github.com/</id>
   <author>
     <name><![CDATA[tpy]]></name>
@@ -20,8 +20,7 @@
     <id>http://red010182.github.com/blog/2013/03/05/setup-a-lamp-with-phpmyadmin-on-aws-ec2</id>
     <content type="html"><![CDATA[<p>First of all, launch an EC2 with this AMI (for cost effective, this blog uses spot micro instance for example)</p>
 
-<h3>Launch Instance</h3>
-
+<h2>Launch Instance</h2>
 
 <p>"ubuntu/images/ebs/ubuntu-precise-12.04-amd64-server-20120616 (ami-5965401c)"</p>
 
@@ -34,8 +33,7 @@
 <pre><code>ssh -i [security_key.pem] ubuntu@[ec2_public_DNS]
 </code></pre>
 
-<h3>Trouble shooting</h3>
-
+<h2>Trouble shooting</h2>
 
 <p>if you get into trouble with some error message like “RSA host key  has changed …" when you try to connect to remote server,</p>
 
@@ -50,8 +48,7 @@
 
 <p>delete the whole entry of problem ip</p>
 
-<h3>Install LAMP</h3>
-
+<h2>Install LAMP</h2>
 
 <p>Follow this to install LAMP-server by typing</p>
 
@@ -59,8 +56,7 @@
 sudo tasksel install lamp-server
 </code></pre>
 
-<h3>Install phpmyadmin</h3>
-
+<h2>Install phpmyadmin</h2>
 
 <pre><code>sudo apt-get install phpmyadmin
 </code></pre>
@@ -82,8 +78,7 @@ sudo tasksel install lamp-server
 
 <p>—————————-</p>
 
-<h3>Install WordPress</h3>
-
+<h2>Install WordPress</h2>
 
 <p>it should be pretty easy when you done this far
 root to blog directory and download latest wordpress file, unzip it then open your browser on http://your_domain/blog</p>
