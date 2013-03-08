@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | My Octopress Blog]]></title>
   <link href="http://red010182.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://red010182.github.com/"/>
-  <updated>2013-03-08T11:19:19+08:00</updated>
+  <updated>2013-03-08T11:20:32+08:00</updated>
   <id>http://red010182.github.com/</id>
   <author>
     <name><![CDATA[tpy]]></name>
@@ -12,6 +12,160 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rails vs Django]]></title>
+    <link href="http://red010182.github.com/blog/2013/03/05/rails-vs-django/"/>
+    <updated>2013-03-05T09:53:00+08:00</updated>
+    <id>http://red010182.github.com/blog/2013/03/05/rails-vs-django</id>
+    <content type="html"><![CDATA[<h2>前言</h2>
+
+<p>近期內要決定server端的開發環境，主要考慮Ruby為主的Ruby on Rails(簡稱Rails)跟python為主的Django。關於這兩個框架的比較，已經有N百篇了，隨便google都有，但是少有中文的資訊，在這邊把它整理一下，希望能給其他人一點幫助～先聲明的是，這種東西是沒有絕對答案的，每個團隊成員的背景跟web application的訴求都不同，考量的層面也不同，選擇最適合自己應用的框架才是最重要的。</p>
+
+<p>在這邊我們主要考量的點有：
+1. 必須因應變化快速的需求
+2. 良好的socke支援:希望開發框架使用的語言跟將來寫socket programming的語言一致，所以Ruby跟Python對socket的支援(lib, api, 3rd party resources…等)必須列入考量。
+3. 可以的話也要支援social game development XD</p>
+
+<p>這是前人的體驗跟比較</p>
+
+<h2>Rails跟Django都用過，最後選擇Django</h2>
+
+<ul>
+<li><a href="http://www.screamingatmyscreen.com/2012/2/19/business_decision_-_why_i_use_django_and_not_ruby_on_rails.html">Business Decision – Why I use Django and not Ruby On Rails</a></li>
+</ul>
+
+
+<h2>Rails跟Django都用過，最後選擇Rails</h2>
+
+<ul>
+<li><p><a href="http://batsov.com/articles/2011/06/19/django-vs-rails/">Django 1.3 vs Rails 3: A Not So Final Showdown</a>
+...資深Rails跟Python(but new to Django)architecture decider的觀點</p></li>
+<li><p><a href="http://www.unfish.net/archives/223-20071109.html">为什么我从Ruby on Rails转向Django又转回来</a>
+...先用Rails然後轉向Django，又轉回Rails</p></li>
+<li><p><a href="http://huacnlee.com/blog/rails-vs-django/">Rails VS Django – 为什么我要选择 Rails!</a>
+...先學Python/Django然後愛上Rails</p></li>
+</ul>
+
+
+<h2>Point of View: Socket Programming</h2>
+
+<ul>
+<li><a href="http://stackoverflow.com/questions/7156837/ruby-vs-python-socket-libraries">Ruby Vs Python – Socket Libraries</a></li>
+<li><a href="http://stackoverflow.com/questions/1813575/its-a-good-idea-use-ruby-for-socket-programming">It’s a good idea use ruby for socket programming?</a></li>
+</ul>
+
+
+<p>結論：兩者這方面的library都差不多，跟語言沒多大關係。</p>
+
+<h2>Point of View: Game development</h2>
+
+<p>就我所知，已經有一些Online game的server端用python去處理遊戲邏輯。然而我不知道的是，原來ruby也成熟到被用來開發遊戲(不是rails哦，純粹ruby)，而且還是遊戲界赫赫有名的zynga(聽過開心農場吧!?)，看看zynga的ruby徵才。</p>
+
+<p>另外，there’s a <a href="http://gamedev.stackexchange.com/questions/3574/is-ruby-a-suitable-language-for-game-development">point of view from a JAVA coder</a>，其中一段，關於ruby對於2D、3D遊戲繪圖的支援有不錯的解說。</p>
+
+<h2>Point of View: Popularity</h2>
+
+<p>有個人在2010年時<a href="http://www.fluther.com/74038/more-rails-devsjobs-than-django/">問了一個問題</a>：「為什麼Rails的工作比Django多那麼多？」根據他在indeed.com(類似國外的104人力銀行)的調查，Rails跟Django的工作數量大約是6000比300。這件事讓我很訝異，我一直以為Rails跟Django是差不多雷同的框架，使用者應該也差不多，工作職缺應該也是，然而事實似乎並非如此。於是我自己調查indeed.com上的數量，得到以下數字(ps.地區僅以US為主)</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">搜尋關鍵字 </th>
+<th align="center"> 職缺數量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">rails </td>
+<td align="center"> 12969</td>
+</tr>
+<tr>
+<td align="left">ruby on rails </td>
+<td align="center"> 4757</td>
+</tr>
+<tr>
+<td align="left">django       </td>
+<td align="center">  1385  </td>
+</tr>
+<tr>
+<td align="left">ruby             </td>
+<td align="center"> 12075  </td>
+</tr>
+<tr>
+<td align="left">python       </td>
+<td align="center"> 19562  </td>
+</tr>
+<tr>
+<td align="left">php          </td>
+<td align="center"> 19148    </td>
+</tr>
+</tbody>
+</table>
+
+
+<p>有趣的是，python的職缺數量比ruby多，但rails跟django剛好相反。我想或許是因為python比ruby早了十幾年，所以使用python的人比較多這也是很合理的。但無論是rails或ruby on rails的職缺都比django來的多。另外，python多於php也是蠻有意思的，我想是因為python除了開發web以外還常被用來作其他事情，例如科學計算..等等(python萬用阿XD)，搜尋結果整體看起來，還算make sense。</p>
+
+<p>雖然說職缺不直接=使用人口，但我想一定也可以某種程度上反應出來，畢竟職缺多，代表選擇使用rails的公司就多，而且學的人也會比較多。</p>
+
+<p>結論：我認為國外的Rails使用者應該是遠大於Django</p>
+
+<h2>Point of View: Community and 3rd party libraries</h2>
+
+<p>從使用人口來推斷的話，社群支援程度我想應該也是Rails比較好。[]也提到不管從google趨勢或是stackoverflow.com上的問題數量看起來，Rails在這方面是勝出的。</p>
+
+<p>然而Python是一個蠻成熟的體系，累積了很多高品質的3rd party libraries跟API，這是蠻不錯的優點。但是他也提到一個問題，就是Python現在(2011年6月時)面臨一個十字路口，新版的python 3.0向下相容的程度有限，Django更只支援2.4，更之後甚至只支援2.7以上的python版本，所以有很多優秀的python插件，Django是不能用的。這一點應該會隨著時間改善，畢竟到現在也過了一年多了，目前的狀況還需要更進一步的調查。</p>
+
+<h2>Point of View: Deploy</h2>
+
+<p>Deploy也是很重要的，可以預期的是，一個startup剛開始一定會頻繁的deploy，關於這點，似乎是rails的強項，尤其是heroku完全就是設計來讓rails deploy的，他已經不單單只是一個tool了，而是一個完整的PaaS。根據我自己使用的經驗，git配上heroku來deploy只有優雅兩字可以形容。</p>
+
+<p>這邊整理幾個deploy的工具
+Rails:
+Amazon Elastic Beanstalk (2012/Nov update)
+Google App Engine (run on Jruby)
+Heroku
+capistrano
+webistrano
+passenger</p>
+
+<p>Django:
+Amazon Elastic Beanstalk
+Google App Engine
+Fabric</p>
+
+<h2>結論</h2>
+
+<p>看完以上所有參考文章，整理出幾個重點</p>
+
+<h3>Rails優點</h3>
+
+<ul>
+<li>Migration很優，連選擇Django的人都說讚，可大幅降低更動資料庫的痛苦。</li>
+<li>社群活躍，資源豐富。</li>
+<li>Deploy是他的強項，有很多工具可以用，也有專門的PaaS。</li>
+<li>authentication跟admin有不錯的gem可用</li>
+<li>convention over configuration可以節省很多瑣碎的設定。</li>
+<li>連zynga都用ruby寫social game，讓人為之一亮!!</li>
+<li>完全MVC</li>
+<li>Heavily Test Driven</li>
+<li>大量遵循RESTful</li>
+</ul>
+
+
+<h3>Django優點</h3>
+
+<ul>
+<li>比Rails好學</li>
+<li>得益於python的嚴謹，寫法固定好維護。</li>
+<li>內建admin。</li>
+<li>有South可以處理資料庫更動。</li>
+<li>內建authentication system</li>
+<li>Python似乎有比較高品質的3rd libraries或API</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[如何用Octopress架部落格在Github上(免費)]]></title>
