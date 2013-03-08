@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: vsftpd | My Octopress Blog]]></title>
+  <link href="http://red010182.github.com/blog/categories/vsftpd/atom.xml" rel="self"/>
+  <link href="http://red010182.github.com/"/>
+  <updated>2013-03-08T11:19:19+08:00</updated>
+  <id>http://red010182.github.com/</id>
+  <author>
+    <name><![CDATA[tpy]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to install and configure vsftpd]]></title>
+    <link href="http://red010182.github.com/blog/2013/03/08/how-to-install-and-configure-vsftpd/"/>
+    <updated>2013-03-08T11:17:00+08:00</updated>
+    <id>http://red010182.github.com/blog/2013/03/08/how-to-install-and-configure-vsftpd</id>
+    <content type="html"><![CDATA[<p>這是一篇很值得讀的ftp設定文，有教怎麼設定使用者的ftp路徑，wordpress朋友不容錯過</p>
+
+<p><a href="http://www.noob2geek.com/linux/setup-vsftpd-debian-ubuntu/">here</a></p>
+]]></content>
+  </entry>
+  
+</feed>
