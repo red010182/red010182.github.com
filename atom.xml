@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://red010182.github.com/atom.xml" rel="self"/>
   <link href="http://red010182.github.com/"/>
-  <updated>2013-03-08T11:20:32+08:00</updated>
+  <updated>2013-03-08T11:54:18+08:00</updated>
   <id>http://red010182.github.com/</id>
   <author>
     <name><![CDATA[tpy]]></name>
@@ -12,6 +12,48 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[WordPress搬家]]></title>
+    <link href="http://red010182.github.com/blog/2013/03/08/wordpressban-jia/"/>
+    <updated>2013-03-08T11:21:00+08:00</updated>
+    <id>http://red010182.github.com/blog/2013/03/08/wordpressban-jia</id>
+    <content type="html"><![CDATA[<p>Wordpress(WP)搬家是一件很痛苦的事，從serverA要搬到serverB，其中的LAMP環境、資料表、ftp、各式各樣的帳號密碼什麼的通通都要來一次設定，相當之累人。這邊記錄一下我自己是怎麼搬家的</p>
+
+<p>假設我在serverA工作，開發完了，想搬到serverB的話</p>
+
+<h2>先在serverB做以下設定</h2>
+
+<ol>
+<li>Setup LAMP環境，可參考<a href="http://red010182.github.com/blog/2013/03/05/setup-a-lamp-with-phpmyadmin-on-aws-ec2/">這裡</a></li>
+<li>設定ftp，參考<a href="http://red010182.github.com/blog/2013/03/08/how-to-install-and-configure-vsftpd/">這裡</a>。ps. 如果之後ftp連線出現問題，試著把<code>chroot_local_user=YES</code>拿掉。</li>
+<li>打開phpmyadmin，建立資料表，建議名稱與serverA WP所用的一樣，至少我自己是這樣用</li>
+<li>安裝wordpress，一定要的</li>
+<li>安裝<a href="http://wordpress.org/extend/plugins/wordpress-move/">wordpress move plugin</a>，不用做任何設定</li>
+</ol>
+
+
+<h2>然後在serverA端</h2>
+
+<ol>
+<li><p>安裝<a href="http://wordpress.org/extend/plugins/wordpress-move/">wordpress move plugin</a>，在Setting -> WordPress Move裡設定ftp，等等會透過這些設定連ftp到serverB上傳備份檔。Remote Backup Path用預設的&#8221;/var/www/wp-content/plugins/wordpress-move/backup/&#8221;即可。如果之後ftp連線失敗，再改一下Use Passive Mode的選項，我這邊是選NO。</p></li>
+<li><p>Tool -> Backup Manager -> Create a Full Backup。Full Backup會備份WP的程式檔以及WP所用的資料表.sql檔。</p></li>
+<li><p>Tool -> Migration Assistant -> Migrate。這個動作是把剛剛的備份檔上傳到serverB的<strong>Remote Backup Path</strong>。不要去改Change Domain Name，它會把你在serverA的網址改掉，serverA的網址大部份情況是不需要改。</p></li>
+</ol>
+
+
+<h2>再回到serverB</h2>
+
+<ol>
+<li>Tool -> Migration Assistant -> Restore。利用剛剛所上傳的備份檔，進行還原，執行需一段時間。這個還原好像不包括theme，所以有必要的話之後再安裝一次theme。</li>
+</ol>
+
+
+<h2>大功告成</h2>
+
+<p>That&#8217;s it!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to install and configure vsftpd]]></title>
