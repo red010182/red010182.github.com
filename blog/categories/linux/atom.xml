@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux | My Octopress Blog]]></title>
   <link href="http://red010182.github.com/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://red010182.github.com/"/>
-  <updated>2013-03-08T14:43:37+08:00</updated>
+  <updated>2013-03-11T23:43:04+08:00</updated>
   <id>http://red010182.github.com/</id>
   <author>
     <name><![CDATA[tpy]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to install and configure vsftpd]]></title>
-    <link href="http://red010182.github.com/blog/2013/03/08/how-to-install-and-configure-vsftpd/"/>
+    <link href="http://red010182.github.com/2013/03/how-to-install-and-configure-vsftpd/"/>
     <updated>2013-03-08T11:17:00+08:00</updated>
-    <id>http://red010182.github.com/blog/2013/03/08/how-to-install-and-configure-vsftpd</id>
+    <id>http://red010182.github.com/2013/03/how-to-install-and-configure-vsftpd</id>
     <content type="html"><![CDATA[<p>這是一篇很值得讀的ftp設定文，有教怎麼設定使用者的ftp路徑，wordpress朋友不容錯過</p>
 
 <p><a href="http://www.noob2geek.com/linux/setup-vsftpd-debian-ubuntu/">here</a></p>
@@ -26,9 +26,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to Setup a LAMP Server with phpmyadmin on AWS-EC2]]></title>
-    <link href="http://red010182.github.com/blog/2013/03/05/setup-a-lamp-with-phpmyadmin-on-aws-ec2/"/>
+    <link href="http://red010182.github.com/2013/03/setup-a-lamp-with-phpmyadmin-on-aws-ec2/"/>
     <updated>2013-03-05T09:17:00+08:00</updated>
-    <id>http://red010182.github.com/blog/2013/03/05/setup-a-lamp-with-phpmyadmin-on-aws-ec2</id>
+    <id>http://red010182.github.com/2013/03/setup-a-lamp-with-phpmyadmin-on-aws-ec2</id>
     <content type="html"><![CDATA[<p>First of all, launch an EC2 with this AMI (for cost effective, this blog uses spot micro instance for example)</p>
 
 <h2>Launch Instance</h2>
@@ -108,9 +108,9 @@ tar -xzvf latest.tar.gz
   
   <entry>
     <title type="html"><![CDATA[How to Setup an FTP server on Ubuntu]]></title>
-    <link href="http://red010182.github.com/blog/2013/03/04/linux-ftp-server-on-ubuntu/"/>
+    <link href="http://red010182.github.com/2013/03/linux-ftp-server-on-ubuntu/"/>
     <updated>2013-03-04T19:59:00+08:00</updated>
-    <id>http://red010182.github.com/blog/2013/03/04/linux-ftp-server-on-ubuntu</id>
+    <id>http://red010182.github.com/2013/03/linux-ftp-server-on-ubuntu</id>
     <content type="html"><![CDATA[<p>這麼一個基本的功能，每次都要弄一大堆設定，真的是無敵煩，為了一勞永逸，我決定要把它記錄下來!!</p>
 
 <h2>前置步驟</h2>

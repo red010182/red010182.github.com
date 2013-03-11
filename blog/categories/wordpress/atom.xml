@@ -4,7 +4,7 @@
   <title><![CDATA[Category: wordpress | My Octopress Blog]]></title>
   <link href="http://red010182.github.com/blog/categories/wordpress/atom.xml" rel="self"/>
   <link href="http://red010182.github.com/"/>
-  <updated>2013-03-08T14:43:37+08:00</updated>
+  <updated>2013-03-11T23:43:04+08:00</updated>
   <id>http://red010182.github.com/</id>
   <author>
     <name><![CDATA[tpy]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to install and configure vsftpd]]></title>
-    <link href="http://red010182.github.com/blog/2013/03/08/how-to-install-and-configure-vsftpd/"/>
+    <link href="http://red010182.github.com/2013/03/how-to-install-and-configure-vsftpd/"/>
     <updated>2013-03-08T11:17:00+08:00</updated>
-    <id>http://red010182.github.com/blog/2013/03/08/how-to-install-and-configure-vsftpd</id>
+    <id>http://red010182.github.com/2013/03/how-to-install-and-configure-vsftpd</id>
     <content type="html"><![CDATA[<p>這是一篇很值得讀的ftp設定文，有教怎麼設定使用者的ftp路徑，wordpress朋友不容錯過</p>
 
 <p><a href="http://www.noob2geek.com/linux/setup-vsftpd-debian-ubuntu/">here</a></p>
@@ -26,9 +26,9 @@
   
   <entry>
     <title type="html"><![CDATA[如何用Octopress架部落格在Github上(免費)]]></title>
-    <link href="http://red010182.github.com/blog/2013/02/26/how-to-use-octorpress-on-github/"/>
+    <link href="http://red010182.github.com/2013/02/how-to-use-octorpress-on-github/"/>
     <updated>2013-02-26T23:42:00+08:00</updated>
-    <id>http://red010182.github.com/blog/2013/02/26/how-to-use-octorpress-on-github</id>
+    <id>http://red010182.github.com/2013/02/how-to-use-octorpress-on-github</id>
     <content type="html"><![CDATA[<h2>什麼是octopress</h2>
 
 <p>octopress是一套讓你寫blog的程式。聽起來好像沒啥特別的，不過他其實很不一樣。一般的部落格系統(或是更專門的術語content manage system, CMS)，像是wordpress, google的blogger, 無名小站, 痞客幫...等，清一色都是架構在動態網站上，也就是網站需要run在類似php這種動態語言的環境，而且通常會搭配著apache, mysql, linux，這個環境簡稱LAMP(Linux + Apache + Mysql + PHP)。</p>

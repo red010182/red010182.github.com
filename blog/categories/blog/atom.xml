@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | My Octopress Blog]]></title>
   <link href="http://red010182.github.com/blog/categories/blog/atom.xml" rel="self"/>
   <link href="http://red010182.github.com/"/>
-  <updated>2013-03-08T14:43:37+08:00</updated>
+  <updated>2013-03-11T23:43:04+08:00</updated>
   <id>http://red010182.github.com/</id>
   <author>
     <name><![CDATA[tpy]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[如何用Octopress架部落格在Github上(免費)]]></title>
-    <link href="http://red010182.github.com/blog/2013/02/26/how-to-use-octorpress-on-github/"/>
+    <link href="http://red010182.github.com/2013/02/how-to-use-octorpress-on-github/"/>
     <updated>2013-02-26T23:42:00+08:00</updated>
-    <id>http://red010182.github.com/blog/2013/02/26/how-to-use-octorpress-on-github</id>
+    <id>http://red010182.github.com/2013/02/how-to-use-octorpress-on-github</id>
     <content type="html"><![CDATA[<h2>什麼是octopress</h2>
 
 <p>octopress是一套讓你寫blog的程式。聽起來好像沒啥特別的，不過他其實很不一樣。一般的部落格系統(或是更專門的術語content manage system, CMS)，像是wordpress, google的blogger, 無名小站, 痞客幫...等，清一色都是架構在動態網站上，也就是網站需要run在類似php這種動態語言的環境，而且通常會搭配著apache, mysql, linux，這個環境簡稱LAMP(Linux + Apache + Mysql + PHP)。</p>
@@ -193,9 +193,9 @@ git remote add SOME_NAME git@you_ssh_host_not_ssh_host_name:your_github_username
   
   <entry>
     <title type="html"><![CDATA[Octopress實在是太酷啦!]]></title>
-    <link href="http://red010182.github.com/blog/2013/02/25/title/"/>
+    <link href="http://red010182.github.com/2013/02/title/"/>
     <updated>2013-02-25T20:07:00+08:00</updated>
-    <id>http://red010182.github.com/blog/2013/02/25/title</id>
+    <id>http://red010182.github.com/2013/02/title</id>
     <content type="html"><![CDATA[<p>Cool!
 這篇post竟然是這樣編出來的：</p>
 

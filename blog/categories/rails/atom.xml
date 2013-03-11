@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | My Octopress Blog]]></title>
   <link href="http://red010182.github.com/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://red010182.github.com/"/>
-  <updated>2013-03-08T14:43:37+08:00</updated>
+  <updated>2013-03-11T23:43:04+08:00</updated>
   <id>http://red010182.github.com/</id>
   <author>
     <name><![CDATA[tpy]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rails vs Django]]></title>
-    <link href="http://red010182.github.com/blog/2013/03/05/rails-vs-django/"/>
+    <link href="http://red010182.github.com/2013/03/rails-vs-django/"/>
     <updated>2013-03-05T09:53:00+08:00</updated>
-    <id>http://red010182.github.com/blog/2013/03/05/rails-vs-django</id>
+    <id>http://red010182.github.com/2013/03/rails-vs-django</id>
     <content type="html"><![CDATA[<h2>前言</h2>
 
 <p>近期內要決定server端的開發環境，主要考慮Ruby為主的Ruby on Rails(簡稱Rails)跟python為主的Django。關於這兩個框架的比較，已經有N百篇了，隨便google都有，但是少有中文的資訊，在這邊把它整理一下，希望能給其他人一點幫助～先聲明的是，這種東西是沒有絕對答案的，每個團隊成員的背景跟web application的訴求都不同，考量的層面也不同，選擇最適合自己應用的框架才是最重要的。</p>

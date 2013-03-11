@@ -1,44 +1,48 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://red010182.github.com/blog/2013/02/25/title/</loc>
+        <loc>http://red010182.github.com/2013/02/title/</loc>
         <lastmod>2013-03-04T20:19:29+08:00</lastmod>
     </url>
     <url>
-        <loc>http://red010182.github.com/blog/2013/02/26/how-to-use-octorpress-on-github/</loc>
+        <loc>http://red010182.github.com/2013/02/how-to-use-octorpress-on-github/</loc>
         <lastmod>2013-03-05T10:27:29+08:00</lastmod>
     </url>
     <url>
-        <loc>http://red010182.github.com/blog/2013/03/04/linux-ftp-server-on-ubuntu/</loc>
+        <loc>http://red010182.github.com/2013/03/linux-ftp-server-on-ubuntu/</loc>
         <lastmod>2013-03-05T09:42:48+08:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://red010182.github.com/blog/2013/03/05/setup-a-lamp-with-phpmyadmin-on-aws-ec2/
-        </loc>
+        <loc>http://red010182.github.com/2013/03/setup-a-lamp-with-phpmyadmin-on-aws-ec2/</loc>
         <lastmod>2013-03-05T09:43:15+08:00</lastmod>
     </url>
     <url>
-        <loc>http://red010182.github.com/blog/2013/03/05/rails-vs-django/</loc>
+        <loc>http://red010182.github.com/2013/03/rails-vs-django/</loc>
         <lastmod>2013-03-08T11:20:26+08:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://red010182.github.com/blog/2013/03/08/how-to-install-and-configure-vsftpd/
-        </loc>
+        <loc>http://red010182.github.com/2013/03/how-to-install-and-configure-vsftpd/</loc>
         <lastmod>2013-03-08T11:19:12+08:00</lastmod>
     </url>
     <url>
-        <loc>http://red010182.github.com/blog/2013/03/08/wordpressban-jia/</loc>
+        <loc>http://red010182.github.com/2013/03/wordpressban-jia/</loc>
         <lastmod>2013-03-08T14:43:25+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://red010182.github.com/2013/03/install-rails-spree/</loc>
+        <lastmod>2013-03-11T16:12:55+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://red010182.github.com/2013/03/deploy-rails-to-aws-ec2/</loc>
+        <lastmod>2013-03-11T23:42:22+08:00</lastmod>
     </url>
     <url>
         <loc>http://red010182.github.com/blog/archives/</loc>
-        <lastmod>2013-03-08T14:43:25+08:00</lastmod>
+        <lastmod>2013-03-11T23:42:22+08:00</lastmod>
     </url>
     <url>
         <loc>http://red010182.github.com/</loc>
-        <lastmod>2013-03-08T14:43:25+08:00</lastmod>
+        <lastmod>2013-03-11T23:42:22+08:00</lastmod>
     </url>
     <url>
         <loc>http://red010182.github.com/robots.txt</loc>

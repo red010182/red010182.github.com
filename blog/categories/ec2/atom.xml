@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ec2 | My Octopress Blog]]></title>
   <link href="http://red010182.github.com/blog/categories/ec2/atom.xml" rel="self"/>
   <link href="http://red010182.github.com/"/>
-  <updated>2013-03-08T14:43:37+08:00</updated>
+  <updated>2013-03-11T23:43:04+08:00</updated>
   <id>http://red010182.github.com/</id>
   <author>
     <name><![CDATA[tpy]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to Setup a LAMP Server with phpmyadmin on AWS-EC2]]></title>
-    <link href="http://red010182.github.com/blog/2013/03/05/setup-a-lamp-with-phpmyadmin-on-aws-ec2/"/>
+    <link href="http://red010182.github.com/2013/03/setup-a-lamp-with-phpmyadmin-on-aws-ec2/"/>
     <updated>2013-03-05T09:17:00+08:00</updated>
-    <id>http://red010182.github.com/blog/2013/03/05/setup-a-lamp-with-phpmyadmin-on-aws-ec2</id>
+    <id>http://red010182.github.com/2013/03/setup-a-lamp-with-phpmyadmin-on-aws-ec2</id>
     <content type="html"><![CDATA[<p>First of all, launch an EC2 with this AMI (for cost effective, this blog uses spot micro instance for example)</p>
 
 <h2>Launch Instance</h2>

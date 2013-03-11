@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://red010182.github.com/atom.xml" rel="self"/>
   <link href="http://red010182.github.com/"/>
-  <updated>2013-03-08T14:43:37+08:00</updated>
+  <updated>2013-03-11T23:43:04+08:00</updated>
   <id>http://red010182.github.com/</id>
   <author>
     <name><![CDATA[tpy]]></name>
@@ -14,10 +14,114 @@
 
   
   <entry>
+    <title type="html"><![CDATA[deploy Rails to AWS ec2]]></title>
+    <link href="http://red010182.github.com/2013/03/deploy-rails-to-aws-ec2/"/>
+    <updated>2013-03-11T23:14:00+08:00</updated>
+    <id>http://red010182.github.com/2013/03/deploy-rails-to-aws-ec2</id>
+    <content type="html"><![CDATA[<p>假設 bitnami Rails stack 安裝好在 ec2</p>
+
+<h2>remote ec2 server</h2>
+
+<pre><code>mkdir ~/apps/myapp
+cd ~/apps/myapp
+git init --bare
+</code></pre>
+
+<h2>local machine</h2>
+
+<pre><code>~/.ssh/config
+Host host_name
+HostName ip_address_or_domain
+User bitnami    # bitnami by default
+IdentityFile /path/to/key.pem
+</code></pre>
+
+<p>make sure you can <code>ssh host_name</code> connect to your remote server. <code>ssh-add key.pem</code> if neccessary.</p>
+
+<pre><code>rails new myapp
+cd myapp
+in &lt;code&gt;Gemfile&lt;/code&gt; add &lt;code&gt;gem 'capistrano'&lt;/code&gt; then &lt;code&gt;bundle install&lt;/code&gt;
+
+git init .
+git add .
+git commit -m 'initial commit'
+</code></pre>
+
+<p>Install capistrano, then in <code>config/deploy.rb</code></p>
+
+<pre><code>require 'bundler/capistrano'
+
+set :application, "app_name"
+
+set :user, 'bitnami'                           # ssh login user
+set :domain, 'ip'                              # domain or ip 
+set :deploy_to_dir, "/home/bitnami/apps/myapp"
+set :local_repository,  "/path/of/your/local/repository"
+set :repository,  "/path/to/remote/repository" # should be /home/bitnami/apps/myapp in this tutorial
+ssh_options[:keys] = ["/path/to/key.pem"]      # used to connect to remote server   
+set :use_sudo, false                           # if turn on, all capistrano maked dir would be of root
+
+
+set :branch, 'master'
+set :scm, "git"
+
+
+role :web, domain                          # Your HTTP server, Apache/etc
+role :app, domain                          # This may be the same as your `Web` server
+role :db,  domain, :primary =&gt; true        # This is where Rails migrations will run
+
+
+set :deploy_to, deploy_to_dir
+set :deploy_via, :export
+
+
+default_run_options[:pty] = true
+
+set :git_shallow_clone, 1
+set :scm_verbose, true
+
+after "deploy:restart", "deploy:cleanup"
+</code></pre>
+
+<p>one more thing:</p>
+
+<pre><code>git remote add ec2 host_name:/home/bitnami/apps/myapp
+</code></pre>
+
+<p>ok, let&#8217;s deploy,</p>
+
+<pre><code>git push ec2 master  # dont forget push first
+cap deploy
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[install rails spree]]></title>
+    <link href="http://red010182.github.com/2013/03/install-rails-spree/"/>
+    <updated>2013-03-11T16:11:00+08:00</updated>
+    <id>http://red010182.github.com/2013/03/install-rails-spree</id>
+    <content type="html"><![CDATA[<pre><code>rails new myapp
+cd myapp
+spree install
+...
+bundle update
+bundle install
+spree bootstrap
+...Would you like to install the default gateways? (Recommended) (yes/no) [yes] 
+...Would you like to install the default authentication system? (yes/no) [yes] 
+...Would you like to run the migrations? (yes/no) [yes] 
+...Would you like to load the seed data? (yes/no) [yes] 
+...Would you like to load the sample data? (yes/no) [yes]
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[WordPress搬家]]></title>
-    <link href="http://red010182.github.com/blog/2013/03/08/wordpressban-jia/"/>
+    <link href="http://red010182.github.com/2013/03/wordpressban-jia/"/>
     <updated>2013-03-08T11:21:00+08:00</updated>
-    <id>http://red010182.github.com/blog/2013/03/08/wordpressban-jia</id>
+    <id>http://red010182.github.com/2013/03/wordpressban-jia</id>
     <content type="html"><![CDATA[<p>Wordpress(WP)搬家是一件很痛苦的事，從serverA要搬到serverB，其中的LAMP環境、資料表、ftp、各式各樣的帳號密碼什麼的通通都要來一次設定，相當之累人。這邊記錄一下我自己是怎麼搬家的</p>
 
 <p>假設我在serverA工作，開發完了，想搬到serverB的話</p>
@@ -25,8 +129,8 @@
 <h2>先在serverB做以下設定</h2>
 
 <ol>
-<li>Setup LAMP環境，可參考<a href="http://red010182.github.com/blog/2013/03/05/setup-a-lamp-with-phpmyadmin-on-aws-ec2/">這裡</a></li>
-<li>設定ftp，參考<a href="http://red010182.github.com/blog/2013/03/08/how-to-install-and-configure-vsftpd/">這裡</a>。ps. 如果之後ftp連線出現問題，試著把<code>chroot_local_user=YES</code>拿掉。</li>
+<li>Setup LAMP環境，可參考<a href="http://red010182.github.com/2013/03/setup-a-lamp-with-phpmyadmin-on-aws-ec2/">這裡</a></li>
+<li>設定ftp，參考<a href="http://red010182.github.com/2013/03/how-to-install-and-configure-vsftpd/">這裡</a>。ps. 如果之後ftp連線出現問題，試著把<code>chroot_local_user=YES</code>拿掉。</li>
 <li>打開phpmyadmin，建立資料表，建議名稱與serverA WP所用的一樣，至少我自己是這樣用</li>
 <li>安裝wordpress，一定要的，這邊注意一下資料表的前綴字串最好要跟serverA相同。</li>
 <li>安裝<a href="http://wordpress.org/extend/plugins/wordpress-move/">wordpress move plugin</a>，不用做任何設定</li>
@@ -57,9 +161,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to install and configure vsftpd]]></title>
-    <link href="http://red010182.github.com/blog/2013/03/08/how-to-install-and-configure-vsftpd/"/>
+    <link href="http://red010182.github.com/2013/03/how-to-install-and-configure-vsftpd/"/>
     <updated>2013-03-08T11:17:00+08:00</updated>
-    <id>http://red010182.github.com/blog/2013/03/08/how-to-install-and-configure-vsftpd</id>
+    <id>http://red010182.github.com/2013/03/how-to-install-and-configure-vsftpd</id>
     <content type="html"><![CDATA[<p>這是一篇很值得讀的ftp設定文，有教怎麼設定使用者的ftp路徑，wordpress朋友不容錯過</p>
 
 <p><a href="http://www.noob2geek.com/linux/setup-vsftpd-debian-ubuntu/">here</a></p>
@@ -68,9 +172,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rails vs Django]]></title>
-    <link href="http://red010182.github.com/blog/2013/03/05/rails-vs-django/"/>
+    <link href="http://red010182.github.com/2013/03/rails-vs-django/"/>
     <updated>2013-03-05T09:53:00+08:00</updated>
-    <id>http://red010182.github.com/blog/2013/03/05/rails-vs-django</id>
+    <id>http://red010182.github.com/2013/03/rails-vs-django</id>
     <content type="html"><![CDATA[<h2>前言</h2>
 
 <p>近期內要決定server端的開發環境，主要考慮Ruby為主的Ruby on Rails(簡稱Rails)跟python為主的Django。關於這兩個框架的比較，已經有N百篇了，隨便google都有，但是少有中文的資訊，在這邊把它整理一下，希望能給其他人一點幫助～先聲明的是，這種東西是沒有絕對答案的，每個團隊成員的背景跟web application的訴求都不同，考量的層面也不同，選擇最適合自己應用的框架才是最重要的。</p>
@@ -222,9 +326,9 @@ Fabric</p>
   
   <entry>
     <title type="html"><![CDATA[How to Setup a LAMP Server with phpmyadmin on AWS-EC2]]></title>
-    <link href="http://red010182.github.com/blog/2013/03/05/setup-a-lamp-with-phpmyadmin-on-aws-ec2/"/>
+    <link href="http://red010182.github.com/2013/03/setup-a-lamp-with-phpmyadmin-on-aws-ec2/"/>
     <updated>2013-03-05T09:17:00+08:00</updated>
-    <id>http://red010182.github.com/blog/2013/03/05/setup-a-lamp-with-phpmyadmin-on-aws-ec2</id>
+    <id>http://red010182.github.com/2013/03/setup-a-lamp-with-phpmyadmin-on-aws-ec2</id>
     <content type="html"><![CDATA[<p>First of all, launch an EC2 with this AMI (for cost effective, this blog uses spot micro instance for example)</p>
 
 <h2>Launch Instance</h2>
@@ -304,9 +408,9 @@ tar -xzvf latest.tar.gz
   
   <entry>
     <title type="html"><![CDATA[How to Setup an FTP server on Ubuntu]]></title>
-    <link href="http://red010182.github.com/blog/2013/03/04/linux-ftp-server-on-ubuntu/"/>
+    <link href="http://red010182.github.com/2013/03/linux-ftp-server-on-ubuntu/"/>
     <updated>2013-03-04T19:59:00+08:00</updated>
-    <id>http://red010182.github.com/blog/2013/03/04/linux-ftp-server-on-ubuntu</id>
+    <id>http://red010182.github.com/2013/03/linux-ftp-server-on-ubuntu</id>
     <content type="html"><![CDATA[<p>這麼一個基本的功能，每次都要弄一大堆設定，真的是無敵煩，為了一勞永逸，我決定要把它記錄下來!!</p>
 
 <h2>前置步驟</h2>
@@ -386,9 +490,9 @@ That’s it!</p>
   
   <entry>
     <title type="html"><![CDATA[如何用Octopress架部落格在Github上(免費)]]></title>
-    <link href="http://red010182.github.com/blog/2013/02/26/how-to-use-octorpress-on-github/"/>
+    <link href="http://red010182.github.com/2013/02/how-to-use-octorpress-on-github/"/>
     <updated>2013-02-26T23:42:00+08:00</updated>
-    <id>http://red010182.github.com/blog/2013/02/26/how-to-use-octorpress-on-github</id>
+    <id>http://red010182.github.com/2013/02/how-to-use-octorpress-on-github</id>
     <content type="html"><![CDATA[<h2>什麼是octopress</h2>
 
 <p>octopress是一套讓你寫blog的程式。聽起來好像沒啥特別的，不過他其實很不一樣。一般的部落格系統(或是更專門的術語content manage system, CMS)，像是wordpress, google的blogger, 無名小站, 痞客幫&#8230;等，清一色都是架構在動態網站上，也就是網站需要run在類似php這種動態語言的環境，而且通常會搭配著apache, mysql, linux，這個環境簡稱LAMP(Linux + Apache + Mysql + PHP)。</p>
@@ -564,9 +668,9 @@ git remote add SOME_NAME git@you_ssh_host_not_ssh_host_name:your_github_username
   
   <entry>
     <title type="html"><![CDATA[Octopress實在是太酷啦!]]></title>
-    <link href="http://red010182.github.com/blog/2013/02/25/title/"/>
+    <link href="http://red010182.github.com/2013/02/title/"/>
     <updated>2013-02-25T20:07:00+08:00</updated>
-    <id>http://red010182.github.com/blog/2013/02/25/title</id>
+    <id>http://red010182.github.com/2013/02/title</id>
     <content type="html"><![CDATA[<p>Cool!
 這篇post竟然是這樣編出來的：</p>
 
