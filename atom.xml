@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://red010182.github.com/atom.xml" rel="self"/>
   <link href="http://red010182.github.com/"/>
-  <updated>2013-03-11T23:43:04+08:00</updated>
+  <updated>2013-03-11T23:45:11+08:00</updated>
   <id>http://red010182.github.com/</id>
   <author>
     <name><![CDATA[tpy]]></name>
@@ -93,6 +93,9 @@ after "deploy:restart", "deploy:cleanup"
 <pre><code>git push ec2 master  # dont forget push first
 cap deploy
 </code></pre>
+
+<p>good ref: <a href="http://www.aaginskiy.com/technology/2011/02/deploying-rails-3-apps-with-capistrano/">here</a>
+this maybe: <a href="http://haiyanggao.blogspot.tw/2012/04/deploy-rails-app-to-amazon-ec2-with.html">here</a>, <a href="http://vasil-y.com/2012/10/10/capistrano-rails-bundler-rvm-unicorn-ec2/">here</a></p>
 ]]></content>
   </entry>
   
