@@ -7,10 +7,7 @@
 	<meta name="author" content="tpy">
 
 	
-	<meta name="description" content="假設 bitnami Rails stack 安裝好在 ec2 remote ec2 server mkdir ~/apps/myapp
-cd ~/apps/myapp
-git init --bare local machine ~/.ssh/config
-Host host_name &hellip;">
+	<meta name="description" content="如何偵測IP位置來自哪個國家？ 今天遇到一個問題，網站上內嵌youtube影片很好，但是來自中國的防火長城(The Great Firewall)封鎖youtube，結果來自中國的用戶便無法正確瀏覽網頁。 為了要解決這個問題，必須針對中國的用戶將他們導向優酷網(中國的視頻服務， &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
@@ -43,6 +40,88 @@ Host host_name &hellip;">
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/2013/03/ruby-on-rails-ip-to-country/">如何偵測IP位置來自哪個國家？</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2013-03-15T17:23:00+08:00">
+			<span class="day">15</span><span class="month">Mar</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <h2>如何偵測IP位置來自哪個國家？</h2>
+
+<p>今天遇到一個問題，網站上內嵌youtube影片很好，但是來自中國的防火長城(The Great Firewall)封鎖youtube，結果來自中國的用戶便無法正確瀏覽網頁。</p>
+
+<p>為了要解決這個問題，必須針對中國的用戶將他們導向優酷網(中國的視頻服務，有如中國版本的youtube)，該怎麼知道用戶是來自哪個國家呢？</p>
+
+<h2><a href="http://www.rubygeocoder.com/">Geocoder</a></h2>
+
+<p>這個套件能偵測IP所對應的國家，而且超容易使用。以上的問題，只要一行code就搞定，不需要動到model或資料庫。</p>
+
+<h3>Let&#8217;s Start!</h3>
+
+<pre><code>gem install geocoder
+</code></pre>
+
+<p>in <code>Gemfile</code></p>
+
+<pre><code>gem geocoder
+</code></pre>
+
+<p>Then,</p>
+
+<pre><code>bundle install
+</code></pre>
+
+<p>然後在Controller裡</p>
+
+<pre><code>if request.location.country_code == 'CN' # China
+  @video_link = ... # to yoku
+else
+  @video_link = ... # to youtube
+end
+</code></pre>
+
+<p>打完收工&#8230;!!</p>
+
+<p>如果想更了解Geocoder的話，<a href="http://rdoc.info/github/alexreisner/geocoder/master/frames">官方API</a>很有用，如果想跟他混熟的話，打開rails console</p>
+
+<pre><code>Geocoder
+Geocoder.search("China")            # Array
+Geocoder.search("China")[0].data    # Hash
+Geocoder.search("China")[0].data["address_components"][0]['short_name'] # CN, = request.location.country_code
+</code></pre>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/rails/'>rails</a><a class='category' href='/blog/categories/ruby/'>ruby</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
