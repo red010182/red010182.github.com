@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: country | My Octopress Blog]]></title>
+  <link href="http://red010182.github.com/blog/categories/country/atom.xml" rel="self"/>
+  <link href="http://red010182.github.com/"/>
+  <updated>2013-03-15T17:47:56+08:00</updated>
+  <id>http://red010182.github.com/</id>
+  <author>
+    <name><![CDATA[tpy]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[如何偵測IP位置來自哪個國家？]]></title>
+    <link href="http://red010182.github.com/2013/03/ruby-on-rails-ip-to-country/"/>
+    <updated>2013-03-15T17:23:00+08:00</updated>
+    <id>http://red010182.github.com/2013/03/ruby-on-rails-ip-to-country</id>
+    <content type="html"><![CDATA[<h2>如何偵測IP位置來自哪個國家？</h2>
+
+<p>今天遇到一個問題，網站上內嵌youtube影片很好，但是來自中國的防火長城(The Great Firewall)封鎖youtube，結果來自中國的用戶便無法正確瀏覽網頁。</p>
+
+<p>解決此問題的其中一個方法是，針對中國的用戶將他們導向優酷網(中國的視頻服務，有如中國版本的youtube)，該怎麼知道用戶是來自哪個國家呢？</p>
+
+<h2><a href="http://www.rubygeocoder.com/">Geocoder</a></h2>
+
+<p>這個套件能偵測IP所對應的國家，而且超容易使用。上述問題只需一行code就搞定，不需要動到model或資料庫。</p>
+
+<h3>Let's Start!</h3>
+
+<pre><code>gem install geocoder
+</code></pre>
+
+<p>在Gemfile裡面加入</p>
+
+<pre><code>gem geocoder
+</code></pre>
+
+<p>Then,</p>
+
+<pre><code>bundle install
+</code></pre>
+
+<p>然後在Controller裡</p>
+
+<pre><code>if request.location.country_code == 'CN' # China
+  @video_link = ... # to yoku
+else
+  @video_link = ... # to youtube
+end
+</code></pre>
+
+<p>打完收工...!!</p>
+
+<p>如果想更了解Geocoder的話，<a href="http://rdoc.info/github/alexreisner/geocoder/master/frames">官方API</a>很有用，如果想跟他混熟的話，打開rails console</p>
+
+<pre><code>Geocoder                            # Module
+Geocoder.search("China")            # Array
+Geocoder.search("China")[0].data    # Hash
+Geocoder.search("China")[0].data["address_components"][0]['short_name'] # CN, = request.location.country_code
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
