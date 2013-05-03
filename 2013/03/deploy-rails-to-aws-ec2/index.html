@@ -140,9 +140,9 @@ after "deploy:restart", "deploy:cleanup"
 cap deploy
 </code></pre>
 
-<p>Gone for this far, it should be easy for the rest. However, by my experiences, it&#8217;s still highly possible to get stuck by any kinds of errors.</p>
+<p>Gone for this far, theoretically it should be easy for the rest. However, by my experiences, it&#8217;s still highly possible to get stucked in any step by any kind of errors.</p>
 
-<p>The command problem might be the shell environment. On one linux machine, there might be different shell environment and different shell environment usually means there&#8217;re different rvm/ruby/rails path. To solve this problem while deploy, one may want to judge the shell environment you want the deployment to use.</p>
+<p>A command problem might be the shell environment. On one linux machine, there might be different shell environments, sh, bash, cth, ..etc, and different shell environments usually corresponding to different rvm/ruby/rails paths. To solve this problem, one may want to decide the shell environment you want to use in deployment.</p>
 
 <p>By default, capistrano use sh. If you don&#8217;t want it be your choice, set false in your deploy.rb:</p>
 
