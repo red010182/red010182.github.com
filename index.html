@@ -226,19 +226,19 @@ cap deploy
 
 <p>A command problem might be the shell environment. On one linux machine, there might be different shell environments, sh, bash, cth, ..etc, and different shell environments usually corresponding to different rvm/ruby/rails paths. To solve this problem, one may want to decide the shell environment you want to use in deployment.</p>
 
-<p>By default, capistrano use sh. If you don&#8217;t want it be your choice, set false in your deploy.rb:</p>
+<p>By default, capistrano use sh. If you don&#8217;t want it be your choice, set false in your deploy.rb, ref <a href="http://deadmemes.net/2012/04/30/capistrano-and-the-shell-used-for-run/">here</a>:</p>
 
-<pre><code>default_run_options[:shell] = false # ref [here](http://deadmemes.net/2012/04/30/capistrano-and-the-shell-used-for-run/)
+<pre><code>default_run_options[:shell] = false
 </code></pre>
 
-<p>or you can specify your favorite:</p>
+<p>or you can specify your favorite, ref <a href="http://stackoverflow.com/questions/7747759/how-do-i-set-the-shell-to-bash-for-run-in-capistrano">here</a>   :</p>
 
-<pre><code>default_run_options[:shell] = '/bin/bash' # I haven't test this yet, ref [here](http://stackoverflow.com/questions/7747759/how-do-i-set-the-shell-to-bash-for-run-in-capistrano)    
+<pre><code>default_run_options[:shell] = '/bin/bash' # I haven't test this yet 
 </code></pre>
 
-<p>Once into your favorite shell, there might still be different rvm loading path. Try this, it works for me:</p>
+<p>Once into your favorite shell, there might still be different rvm loading path. Try this, it works for me, ref <a href="http://stackoverflow.com/questions/3737678/rails-3-bundler-capistrano-errors">here</a>:</p>
 
-<pre><code>set :bundle_cmd, 'source $HOME/.bash_profile &amp;&amp; bundle' # ref [here](http://stackoverflow.com/questions/3737678/rails-3-bundler-capistrano-errors)
+<pre><code>set :bundle_cmd, 'source $HOME/.bash_profile &amp;&amp; bundle' 
 </code></pre>
 
 <p>good ref: <a href="http://www.aaginskiy.com/technology/2011/02/deploying-rails-3-apps-with-capistrano/">here</a>
