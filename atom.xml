@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://red010182.github.com/atom.xml" rel="self"/>
   <link href="http://red010182.github.com/"/>
-  <updated>2013-03-15T17:47:56+08:00</updated>
+  <updated>2013-05-03T11:06:03+08:00</updated>
   <id>http://red010182.github.com/</id>
   <author>
     <name><![CDATA[tpy]]></name>
@@ -143,6 +143,25 @@ after "deploy:restart", "deploy:cleanup"
 
 <pre><code>git push ec2 master  # dont forget push first
 cap deploy
+</code></pre>
+
+<p>Gone for this far, it should be easy for the rest. However, by my experiences, it&#8217;s still highly possible to get stuck by any kinds of errors.</p>
+
+<p>The command problem might be the shell environment. On one linux machine, there might be different shell environment and different shell environment usually means there&#8217;re different rvm/ruby/rails path. To solve this problem while deploy, one may want to judge the shell environment you want the deployment to use.</p>
+
+<p>By default, capistrano use sh. If you don&#8217;t want it be your choice, set false in your deploy.rb:</p>
+
+<pre><code>default_run_options[:shell] = false # ref [here](http://deadmemes.net/2012/04/30/capistrano-and-the-shell-used-for-run/)
+</code></pre>
+
+<p>or you can specify your favorite:</p>
+
+<pre><code>default_run_options[:shell] = '/bin/bash' # I haven't test this yet, ref [here](http://stackoverflow.com/questions/7747759/how-do-i-set-the-shell-to-bash-for-run-in-capistrano)    
+</code></pre>
+
+<p>Once into your favorite shell, there might still be different rvm loading path. Try this, it works for me:</p>
+
+<pre><code>set :bundle_cmd, 'source $HOME/.bash_profile &amp;&amp; bundle' # ref [here](http://stackoverflow.com/questions/3737678/rails-3-bundler-capistrano-errors)
 </code></pre>
 
 <p>good ref: <a href="http://www.aaginskiy.com/technology/2011/02/deploying-rails-3-apps-with-capistrano/">here</a>
