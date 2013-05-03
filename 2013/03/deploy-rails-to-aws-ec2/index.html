@@ -93,9 +93,15 @@ git add .
 git commit -m 'initial commit'
 </code></pre>
 
-<p>Install capistrano, then in <code>config/deploy.rb</code></p>
+<p>Install capistrano, then in your local application dir</p>
 
-<pre><code>require 'bundler/capistrano'
+<pre><code>capify .
+</code></pre>
+
+<p>Then</p>
+
+<pre><code># in your config/deploy.rb 
+require 'bundler/capistrano'
 
 set :application, "app_name"
 
