@@ -7,7 +7,8 @@
 	<meta name="author" content="tpy">
 
 	
-	<meta name="description" content="如何偵測IP位置來自哪個國家？ 今天遇到一個問題，網站上內嵌youtube影片很好，但是來自中國的防火長城(The Great Firewall)封鎖youtube，結果來自中國的用戶便無法正確瀏覽網頁。 解決此問題的其中一個方法是，針對中國的用戶將他們導向優酷網(中國的視頻服務， &hellip;">
+	<meta name="description" content="sudo apt-get update
+sudo apt-get install nginx gem install thin create a thin.yml setting for thin server: in thin.yml: chdir: /home/dayen/work/ &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
@@ -40,6 +41,175 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/2013/05/thin-plus-nginx-plus-rails/">Thin + Nginx + Rails</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2013-05-09T09:41:00+08:00">
+			<span class="day"> 9</span><span class="month">May</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <pre><code>sudo apt-get update
+sudo apt-get install nginx
+
+gem install thin
+</code></pre>
+
+<p>create a thin.yml setting for thin server:</p>
+
+<p>in thin.yml:</p>
+
+<pre><code>chdir: /home/dayen/work/rails/iSee/releases/20130508014904
+environment: production
+address: 0.0.0.0
+port: 5000
+timeout: 30
+log: log/thin.log
+pid: tmp/pids/thin.pid
+max_conns: 1024
+max_persistent_conns: 100
+require: []
+wait: 30
+servers: 3
+daemonize: true 
+</code></pre>
+
+<p>usage:</p>
+
+<pre><code>thin server -C thin.yml
+</code></pre>
+
+<p>It will create 3 thin servers in port 5000, 5001, 5002</p>
+
+<p>============</p>
+
+<p>Now let&#8217;s set up nginx, insert these code into http{&#8230;} section</p>
+
+<pre><code>upstream thin_cluster {
+            server unix:/tmp/thin.0.sock;
+            server unix:/tmp/thin.1.sock;
+            server unix:/tmp/thin.2.sock;
+  }
+
+  client_max_body_size 20m;
+
+  server {
+    listen       80;
+    server_name  iSee;
+
+    root /home/dayen/work/rails/iSee/releases/20130508014904/public;
+
+    location / {
+      proxy_set_header  X-Real-IP  $remote_addr;
+      proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header Host $http_host;
+      proxy_redirect off;
+
+      if (-f $request_filename/index.html) {
+        rewrite (.*) $1/index.html break;
+      }
+      if (-f $request_filename.html) {
+        rewrite (.*) $1.html break;
+      }
+      if (!-f $request_filename) {
+        proxy_pass http://thin_cluster;
+        break;
+      }
+    }
+
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+      root   html;
+    }
+  }
+</code></pre>
+
+<p>in /etc/nginx/sites-available create a configure file, or modify default. If you choose to create a configure file, like myApp.com, remember to add it in /etc/nginx/sites-enable as well, make a symbolic link to sites-available.</p>
+
+<p>configure file:</p>
+
+<pre><code>upstream thinservers {
+        server 127.0.0.1:5000;
+        server 127.0.0.1:5001;
+        server 127.0.0.1:5002;
+    }
+
+
+server {
+            listen   80;
+            server_name put_your_domain_or_ip_here;
+
+            access_log /home/dayen/work/rails/iSee/shared/log/access.log;
+            error_log /home/dayen/work/rails/iSee/shared/logerror.log;
+
+            root   /path/to/rails/application/public;
+            index  index.html;
+
+            location / {
+                          proxy_set_header  X-Real-IP  $remote_addr;
+                          proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+                          proxy_set_header Host $http_host;
+                          proxy_redirect off;
+
+                          if (-f $request_filename/index.html) {
+                                           rewrite (.*) $1/index.html break;
+                          }
+
+                          if (-f $request_filename.html) {
+                                           rewrite (.*) $1.html break;
+                          }
+
+                          if (!-f $request_filename) {
+                                           proxy_pass http://thinservers;
+                                           break;
+                          }
+            }
+
+}
+</code></pre>
+
+<p>=======</p>
+
+<p>if you got &#8220;413 Request Entity Too Large&#8221;, that&#8217;s nginx&#8217;s setting stuff</p>
+
+<p>in nginx.conf, insert this line of code into http{&#8230;}</p>
+
+<pre><code>client_max_body_size 20m;
+</code></pre>
+
+<p>=======</p>
+
+<p>Ref:
+<a href="http://articles.slicehost.com/2008/5/27/ubuntu-hardy-nginx-rails-and-thin">Ubuntu Hardy - Nginx, rails and thin</a></p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -1047,61 +1217,11 @@ git remote add SOME_NAME git@you_ssh_host_not_ssh_host_name:your_github_username
 </article>
 
 
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/2013/02/title/">Octopress實在是太酷啦!</a></h1>
-  
-  
-
-
-
-
-
-
-
-
+<nav id="pagenavi">
 	
-		<time datetime="2013-02-25T20:07:00+08:00">
-			<span class="day">25</span><span class="month">Feb</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>Cool!
-這篇post竟然是這樣編出來的：</p>
-
-<p><img src="/images/screenshots/shot.png" width="600"></p>
-
-<p>然後再一句</p>
-
-<pre><code>rake deploy
-</code></pre>
-
-<h1>我的天啊，太神奇了傑克!!</h1>
-
-<h2>我的天啊，太神奇了傑克!!</h2>
-
-<h3>我的天啊，太神奇了傑克!!</h3>
-
-<h4>我的天啊，太神奇了傑克!!</h4>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/blog/'>blog</a><a class='category' href='/blog/categories/octopress/'>octopress</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
+	<a href="/blog/page/2/" class="next alignright">Next</a>
+ <div class="clearfix"></div>
+</nav>
 </div>
 	<footer id="footer" class="inner"><div class="social alignright">
 	
