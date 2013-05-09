@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://red010182.github.com/atom.xml" rel="self"/>
   <link href="http://red010182.github.com/"/>
-  <updated>2013-05-09T09:53:57+08:00</updated>
+  <updated>2013-05-09T10:02:54+08:00</updated>
   <id>http://red010182.github.com/</id>
   <author>
     <name><![CDATA[tpy]]></name>
@@ -18,15 +18,21 @@
     <link href="http://red010182.github.com/2013/05/thin-plus-nginx-plus-rails/"/>
     <updated>2013-05-09T09:41:00+08:00</updated>
     <id>http://red010182.github.com/2013/05/thin-plus-nginx-plus-rails</id>
-    <content type="html"><![CDATA[<pre><code>sudo apt-get update
+    <content type="html"><![CDATA[<h2>Install</h2>
+
+<p>First and of course, install them:</p>
+
+<pre><code>sudo apt-get update
 sudo apt-get install nginx
 
 gem install thin
 </code></pre>
 
-<p>create a thin.yml setting for thin server:</p>
+<h2>Configure Thin server</h2>
 
-<p>in thin.yml:</p>
+<p>In your rails app, create a thin.yml setting for thin server:</p>
+
+<p>thin.yml:</p>
 
 <pre><code>chdir: /home/dayen/work/rails/iSee/releases/20130508014904
 environment: production
@@ -50,7 +56,7 @@ daemonize: true
 
 <p>It will create 3 thin servers in port 5000, 5001, 5002</p>
 
-<p>============</p>
+<h2>Connect Nginx with Thin</h2>
 
 <p>Now let&#8217;s set up nginx, insert these code into http{&#8230;} section</p>
 
@@ -66,7 +72,7 @@ daemonize: true
     listen       80;
     server_name  iSee;
 
-    root /home/dayen/work/rails/iSee/releases/20130508014904/public;
+    root /home/user/work/rails/application/releases/20130508014904/public;
 
     location / {
       proxy_set_header  X-Real-IP  $remote_addr;
@@ -137,19 +143,35 @@ server {
 }
 </code></pre>
 
-<p>=======</p>
+<h2>Worth Notice</h2>
 
-<p>if you got &#8220;413 Request Entity Too Large&#8221;, that&#8217;s nginx&#8217;s setting stuff</p>
+<ol>
+<li><p>Remember to run assets pipeline first in your rails app so that nginx could serve the static files (thin is not going to serve static files by default).
+ rake assets:precompile RAILS_ENV=production</p></li>
+<li><p>Create dir &#8220;log&#8221; and &#8220;system&#8221; in rails_deployment_dir_path/shared/</p></li>
+</ol>
 
-<p>in nginx.conf, insert this line of code into http{&#8230;}</p>
 
-<pre><code>client_max_body_size 20m;
+<h3>Problems might face</h3>
+
+<ul>
+<li>If you got &#8220;413 Request Entity Too Large&#8221;, that&#8217;s nginx&#8217;s setting stuff, in nginx.conf, insert this line of code into http{&#8230;}
+  client_max_body_size 20m;</li>
+</ul>
+
+
+<h2>Ref</h2>
+
+<p><a href="http://articles.slicehost.com/2008/5/27/ubuntu-hardy-nginx-rails-and-thin">Ubuntu Hardy - Nginx, rails and thin</a></p>
+
+<p>Useful command:</p>
+
+<pre><code>sudo service nginx start/stop/restart
+sudo service apache2 start/stop/restart
+rails db:migrate RAILS_ENV=production
+thin start -s 3 -p 5000 -e production
+tail -f log/production.log
 </code></pre>
-
-<p>=======</p>
-
-<p>Ref:
-<a href="http://articles.slicehost.com/2008/5/27/ubuntu-hardy-nginx-rails-and-thin">Ubuntu Hardy - Nginx, rails and thin</a></p>
 ]]></content>
   </entry>
   
