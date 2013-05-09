@@ -81,7 +81,7 @@ gem install thin
 
 <p>thin.yml:</p>
 
-<pre><code>chdir: /home/dayen/work/rails/iSee/releases/20130508014904
+<pre><code>chdir: /home/user/work/rails/application/releases/20130508014904
 environment: production
 address: 0.0.0.0
 port: 5000
@@ -117,7 +117,7 @@ daemonize: true
 
   server {
     listen       80;
-    server_name  iSee;
+    server_name  application;
 
     root /home/user/work/rails/application/releases/20130508014904/public;
 
@@ -161,8 +161,8 @@ server {
             listen   80;
             server_name put_your_domain_or_ip_here;
 
-            access_log /home/dayen/work/rails/iSee/shared/log/access.log;
-            error_log /home/dayen/work/rails/iSee/shared/logerror.log;
+            access_log /home/user/work/rails/application/shared/log/access.log;
+            error_log /home/user/work/rails/application/shared/logerror.log;
 
             root   /path/to/rails/application/public;
             index  index.html;
