@@ -38,19 +38,25 @@
     </url>
     <url>
         <loc>http://red010182.github.com/2013/03/ruby-on-rails-ip-to-country/</loc>
-        <lastmod>2013-03-15T17:47:50+08:00</lastmod>
+        <lastmod>2013-06-19T14:47:48+08:00</lastmod>
     </url>
     <url>
         <loc>http://red010182.github.com/2013/05/thin-plus-nginx-plus-rails/</loc>
-        <lastmod>2013-05-09T10:04:20+08:00</lastmod>
+        <lastmod>2013-06-19T15:02:14+08:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://red010182.github.com/2013/06/capistrano-auto-deployment-for-nginx-plus-thin/
+        </loc>
+        <lastmod>2013-06-19T15:06:32+08:00</lastmod>
     </url>
     <url>
         <loc>http://red010182.github.com/blog/archives/</loc>
-        <lastmod>2013-05-09T10:04:20+08:00</lastmod>
+        <lastmod>2013-06-19T15:06:32+08:00</lastmod>
     </url>
     <url>
         <loc>http://red010182.github.com/</loc>
-        <lastmod>2013-05-09T10:04:20+08:00</lastmod>
+        <lastmod>2013-06-19T15:06:32+08:00</lastmod>
     </url>
     <url>
         <loc>http://red010182.github.com/robots.txt</loc>

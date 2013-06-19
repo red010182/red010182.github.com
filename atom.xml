@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://red010182.github.com/atom.xml" rel="self"/>
   <link href="http://red010182.github.com/"/>
-  <updated>2013-05-09T10:04:27+08:00</updated>
+  <updated>2013-06-19T15:05:37+08:00</updated>
   <id>http://red010182.github.com/</id>
   <author>
     <name><![CDATA[tpy]]></name>
@@ -12,6 +12,190 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[Capistrano] Auto Deployment for nginx + thin]]></title>
+    <link href="http://red010182.github.com/2013/06/capistrano-auto-deployment-for-nginx-plus-thin/"/>
+    <updated>2013-06-19T14:49:00+08:00</updated>
+    <id>http://red010182.github.com/2013/06/capistrano-auto-deployment-for-nginx-plus-thin</id>
+    <content type="html"><![CDATA[<p>Nginx + Thin are greate, but auto deploy make them even awesome! Here&#8217;s HOW-TOs by using capistrano:</p>
+
+<p>First assumed that you&#8217;ve set up a Nginx-Thin server, if you don&#8217;t, please <a href="http://red010182.github.com/2013/05/thin-plus-nginx-plus-rails/">this post</a>.</p>
+
+<p>Typically, there&#8217;re few things you will always do after <code>cap deploy</code>:</p>
+
+<ol>
+<li><p>Bundle install: This is most important, otherwise your app might not work at all. This part is included in <a href="http://red010182.github.com/2013/05/thin-plus-nginx-plus-rails/">this post</a></p></li>
+<li><p>Copy config files: database.yml, thin_config.yml, some scripts&#8230; and so on.</p></li>
+<li><p>Precompile assets: This is of course you must do for performance, I think maybe it could be done before deploy but anyway I do this after <code>cap deploy</code>.</p></li>
+<li><p>Migration</p></li>
+<li><p>Restart thin servers and nginx server.</p></li>
+</ol>
+
+
+<p>Here&#8217;s a sample configuration for deploy.rb</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>require "bundler/capistrano"
+</span><span class='line'>
+</span><span class='line'>set :application, "iSee"
+</span><span class='line'>
+</span><span class='line'>set :user, 'dayen'                           # ssh login user
+</span><span class='line'>set :domain, '220.128.237.243'                              # domain or ip
+</span><span class='line'>set :deploy_to_dir, "/home/dayen/work/rails/iSee"
+</span><span class='line'>set :local_repository,  "/Users/tpy/panorama/iSee"
+</span><span class='line'>set :repository,  "/home/dayen/work/rails/iSee" # should be /home/bitnami/apps/myapp in this tutorial
+</span><span class='line'>set :use_sudo, false                           # if turn on, all capistrano maked dir would be of root
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>set :branch, 'master'
+</span><span class='line'>set :scm, "git"
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>role :web, domain                          # Your HTTP server, Apache/etc
+</span><span class='line'>role :app, domain                          # This may be the same as your `Web` server
+</span><span class='line'>role :db,  domain, :primary =&gt; true        # This is where Rails migrations will run
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>set :deploy_to, deploy_to_dir
+</span><span class='line'>set :deploy_via, :export
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>default_run_options[:pty] = true
+</span><span class='line'>
+</span><span class='line'>set :git_shallow_clone, 1
+</span><span class='line'>set :scm_verbose, true
+</span><span class='line'>
+</span><span class='line'>after "deploy:restart", "deploy:cleanup"
+</span><span class='line'>
+</span><span class='line'>set :bundle_cmd, 'source $HOME/.bash_profile && bundle'
+</span><span class='line'>default_run_options[:shell] = false
+</span><span class='line'># default_run_options[:shell] = '~/bash'
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>#================== tasks ====================
+</span><span class='line'>
+</span><span class='line'>namespace :deploy do
+</span><span class='line'>
+</span><span class='line'>  task :copy_config_files, :roles =&gt; [:app] do
+</span><span class='line'>    db_config = "#{path}/database.yml"
+</span><span class='line'>    thin_config = "#{path}/thin_config.yml"
+</span><span class='line'>    run "cp #{db_config} #{release_path}/config/database.yml"
+</span><span class='line'>    run "cp #{thin_config} #{release_path}/"
+</span><span class='line'>  end
+</span><span class='line'>
+</span><span class='line'>  task :precompile do
+</span><span class='line'>      run "cd #{release_path}; source $HOME/.bash_profile && bundle exec rake assets:precompile RAILS_ENV=production"
+</span><span class='line'>  end
+</span><span class='line'>
+</span><span class='line'>  task :migration do
+</span><span class='line'>    run "cd #{release_path}; source $HOME/.bash_profile && bundle exec rake db:migrate RAILS_ENV=production"
+</span><span class='line'>  end
+</span><span class='line'>
+</span><span class='line'>  task :config_nginx do
+</span><span class='line'>    pre = File.basename(previous_release)
+</span><span class='line'>    cur = File.basename(release_path)
+</span><span class='line'>    run "#{sudo} sed 's/#{pre}/#{cur}/g' /etc/nginx/sites-available/default"
+</span><span class='line'>  end
+</span><span class='line'>
+</span><span class='line'>  task :restart_thin_server do
+</span><span class='line'>    run "cd #{previous_release}; source $HOME/.bash_profile && thin stop -C thin_config.yml"
+</span><span class='line'>    run "cd #{release_path}; source $HOME/.bash_profile && thin start -C thin_config.yml"
+</span><span class='line'>  end
+</span><span class='line'>
+</span><span class='line'>  task :restart_nginx do
+</span><span class='line'>    run "#{sudo} service nginx restart"
+</span><span class='line'>  end
+</span><span class='line'>
+</span><span class='line'>end
+</span><span class='line'>
+</span><span class='line'>after "deploy:finalize_update", # after this step, excute the following task
+</span><span class='line'>      "deploy:copy_config_files", 
+</span><span class='line'>      "deploy:precompile", 
+</span><span class='line'>      "deploy:config_nginx",
+</span><span class='line'>      "deploy:restart_thin_server"
+</span><span class='line'>      "deploy:restart_nginx"</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[thin + nginx + rails]]></title>
@@ -52,6 +236,11 @@ daemonize: true
 <p>usage:</p>
 
 <pre><code>thin server -C thin.yml
+</code></pre>
+
+<p>or if you don&#8217;t want the config bounded to a specific dir, just don&#8217;t specify &#8220;chdir&#8221;, then its usage:</p>
+
+<pre><code>cd {some_path}; thin server -C thin.yml
 </code></pre>
 
 <p>It will create 3 thin servers in port 5000, 5001, 5002</p>
@@ -146,19 +335,17 @@ server {
 <h2>Worth Notice</h2>
 
 <ol>
-<li><p>Remember to run assets pipeline first in your rails app so that nginx could serve the static files (thin is not going to serve static files by default).
- rake assets:precompile RAILS_ENV=production</p></li>
+<li><p>Remember to run assets pipeline first in your rails app so that nginx could serve the static files (thin is not going to serve static files by default). <code>rake assets:precompile RAILS_ENV=production</code></p></li>
 <li><p>Create dir &#8220;log&#8221; and &#8220;system&#8221; in rails_deployment_dir_path/shared/</p></li>
 </ol>
 
 
 <h3>Problems might face</h3>
 
-<ul>
-<li>If you got &#8220;413 Request Entity Too Large&#8221;, that&#8217;s nginx&#8217;s setting stuff, in nginx.conf, insert this line of code into http{&#8230;}
-  client_max_body_size 20m;</li>
-</ul>
+<p>If you got &#8220;413 Request Entity Too Large&#8221;, that&#8217;s nginx&#8217;s setting stuff, in nginx.conf, insert this line of code into http{&#8230;}.</p>
 
+<pre><code>client_max_body_size 20m;
+</code></pre>
 
 <h2>Ref</h2>
 
@@ -176,7 +363,7 @@ tail -f log/production.log
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[如何偵測IP位置來自哪個國家？]]></title>
+    <title type="html"><![CDATA[[Rails] 如何偵測IP位置來自哪個國家？]]></title>
     <link href="http://red010182.github.com/2013/03/ruby-on-rails-ip-to-country/"/>
     <updated>2013-03-15T17:23:00+08:00</updated>
     <id>http://red010182.github.com/2013/03/ruby-on-rails-ip-to-country</id>
@@ -562,6 +749,24 @@ Fabric</p>
 <li>Python似乎有比較高品質的3rd libraries或API</li>
 </ul>
 
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[Rails] from 0 to deploy on amazon ec2 cloud server]]></title>
+    <link href="http://red010182.github.com/2013/03/rails-from-0-to-deploy-on-amazon-ec2-cloud-server/"/>
+    <updated>2013-03-05T09:51:00+08:00</updated>
+    <id>http://red010182.github.com/2013/03/rails-from-0-to-deploy-on-amazon-ec2-cloud-server</id>
+    <content type="html"><![CDATA[<p>[under construction]</p>
+
+<pre><code>&lt;script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=put_your_google_map_api_key_here;sensor=false"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="assets/js/jquery.gmap.min.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>這樣做在development mode可以work，但是在production mode會失敗。原因是assets precompile的關係：Rails會把/app/assets/裡的東西透過rake作precompile給production mode使用(透過指令 rake assets:precompile)，以達到效能最佳化，然後Rails會把precompile過後的檔案放在/public/assets裡。但是Rails並不會去precompile你自己include的javascript或stylesheet檔，除非用javascript_include_tag 或stylesheet_link_tag，透過Rails的指令去include它才能偵測到，也才會被丟進precompile process裡。所以對於這些你自己include的檔案，你必須自己丟進/public裡，例如上面的html include javascript的寫法，在Rails裡就必須把jquery.gmap.min.js放在/public/assets/js裡，並且在application.rb打開以下選項，在production mode才能正常運作。</p>
+
+<pre><code>config.assets.enabled = true
+</code></pre>
 ]]></content>
   </entry>
   

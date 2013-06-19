@@ -4,7 +4,7 @@
   <title><![CDATA[Category: octopress | My Octopress Blog]]></title>
   <link href="http://red010182.github.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://red010182.github.com/"/>
-  <updated>2013-05-09T10:04:27+08:00</updated>
+  <updated>2013-06-19T16:02:24+08:00</updated>
   <id>http://red010182.github.com/</id>
   <author>
     <name><![CDATA[tpy]]></name>
@@ -199,7 +199,7 @@ git remote add SOME_NAME git@you_ssh_host_not_ssh_host_name:your_github_username
     <content type="html"><![CDATA[<p>Cool!
 這篇post竟然是這樣編出來的：</p>
 
-<p><img src="/images/screenshots/shot.png" width="600"></p>
+<p>{% img /images/screenshots/shot.png 600 %}</p>
 
 <p>然後再一句</p>
 

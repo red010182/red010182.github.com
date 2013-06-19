@@ -3,11 +3,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>[Rails] 如何偵測IP位置來自哪個國家？ | My Octopress Blog</title>
+	<title>[Rails] from 0 to deploy on amazon ec2 cloud server | My Octopress Blog</title>
 	<meta name="author" content="tpy">
 
 	
-	<meta name="description" content="如何偵測IP位置來自哪個國家？ 今天遇到一個問題，網站上內嵌youtube影片很好，但是來自中國的防火長城(The Great Firewall)封鎖youtube，結果來自中國的用戶便無法正確瀏覽網頁。 解決此問題的其中一個方法是，針對中國的用戶將他們導向優酷網(中國的視頻服務， &hellip;">
+	<meta name="description" content="[under construction] &lt;script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=put_your_google_map_api_key_here;sensor= &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
@@ -41,7 +41,7 @@
 </header>
 	<div id="content" class="inner"><article class="post"><header>
   
-  <h1 class="title">[Rails] 如何偵測IP位置來自哪個國家？</h1>
+  <h1 class="title">[Rails] From 0 to Deploy on Amazon Ec2 Cloud Server</h1>
   
   
 
@@ -53,56 +53,23 @@
 
 
 	
-		<time datetime="2013-03-15T17:23:00+08:00">
-			<span class="day">15</span><span class="month">Mar</span>
+		<time datetime="2013-03-05T09:51:00+08:00">
+			<span class="day"> 5</span><span class="month">Mar</span>
 		</time>
 	
 
 </header>
 <div class="entry-content">
   
-    <h2>如何偵測IP位置來自哪個國家？</h2>
+    <p>[under construction]</p>
 
-<p>今天遇到一個問題，網站上內嵌youtube影片很好，但是來自中國的防火長城(The Great Firewall)封鎖youtube，結果來自中國的用戶便無法正確瀏覽網頁。</p>
-
-<p>解決此問題的其中一個方法是，針對中國的用戶將他們導向優酷網(中國的視頻服務，有如中國版本的youtube)，該怎麼知道用戶是來自哪個國家呢？</p>
-
-<h2><a href="http://www.rubygeocoder.com/">Geocoder</a></h2>
-
-<p>這個套件能偵測IP所對應的國家，而且超容易使用。上述問題只需一行code就搞定，不需要動到model或資料庫。</p>
-
-<h3>Let&#8217;s Start!</h3>
-
-<pre><code>gem install geocoder
+<pre><code>&lt;script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=put_your_google_map_api_key_here;sensor=false"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="assets/js/jquery.gmap.min.js"&gt;&lt;/script&gt;
 </code></pre>
 
-<p>在Gemfile裡面加入</p>
+<p>這樣做在development mode可以work，但是在production mode會失敗。原因是assets precompile的關係：Rails會把/app/assets/裡的東西透過rake作precompile給production mode使用(透過指令 rake assets:precompile)，以達到效能最佳化，然後Rails會把precompile過後的檔案放在/public/assets裡。但是Rails並不會去precompile你自己include的javascript或stylesheet檔，除非用javascript_include_tag 或stylesheet_link_tag，透過Rails的指令去include它才能偵測到，也才會被丟進precompile process裡。所以對於這些你自己include的檔案，你必須自己丟進/public裡，例如上面的html include javascript的寫法，在Rails裡就必須把jquery.gmap.min.js放在/public/assets/js裡，並且在application.rb打開以下選項，在production mode才能正常運作。</p>
 
-<pre><code>gem geocoder
-</code></pre>
-
-<p>Then,</p>
-
-<pre><code>bundle install
-</code></pre>
-
-<p>然後在Controller裡</p>
-
-<pre><code>if request.location.country_code == 'CN' # China
-  @video_link = ... # to yoku
-else
-  @video_link = ... # to youtube
-end
-</code></pre>
-
-<p>打完收工&#8230;!!</p>
-
-<p>如果想更了解Geocoder的話，<a href="http://rdoc.info/github/alexreisner/geocoder/master/frames">官方API</a>很有用，如果想跟他混熟的話，打開rails console</p>
-
-<pre><code>Geocoder                            # Module
-Geocoder.search("China")            # Array
-Geocoder.search("China")[0].data    # Hash
-Geocoder.search("China")[0].data["address_components"][0]['short_name'] # CN, = request.location.country_code
+<pre><code>config.assets.enabled = true
 </code></pre>
 
     
@@ -127,7 +94,7 @@ Geocoder.search("China")[0].data["address_components"][0]['short_name'] # CN, = 
 
 
 
-	<div class="tags"><a class='category' href='/blog/categories/country/'>country</a><a class='category' href='/blog/categories/geocoder/'>geocoder</a><a class='category' href='/blog/categories/ip/'>ip</a><a class='category' href='/blog/categories/rails/'>rails</a><a class='category' href='/blog/categories/ruby/'>ruby</a></div>
+	<div class="tags"><a class='category' href='/blog/categories/rails/'>rails</a></div>
 
     
   </footer>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: geocoder | My Octopress Blog]]></title>
   <link href="http://red010182.github.com/blog/categories/geocoder/atom.xml" rel="self"/>
   <link href="http://red010182.github.com/"/>
-  <updated>2013-05-09T10:04:27+08:00</updated>
+  <updated>2013-06-19T16:02:24+08:00</updated>
   <id>http://red010182.github.com/</id>
   <author>
     <name><![CDATA[tpy]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[如何偵測IP位置來自哪個國家？]]></title>
+    <title type="html"><![CDATA[[Rails] 如何偵測IP位置來自哪個國家？]]></title>
     <link href="http://red010182.github.com/2013/03/ruby-on-rails-ip-to-country/"/>
     <updated>2013-03-15T17:23:00+08:00</updated>
     <id>http://red010182.github.com/2013/03/ruby-on-rails-ip-to-country</id>
